@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: Beauty;
+    src: url("assets/font/BeautyDemo.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Bangers;
+    src: url("assets/font/Bangers.ttf") format("truetype");
+
+}
+
+@font-face {
+    font-family: Farsan;
+    src: url("assets/font/Farsan-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Dosis;
+  src: url("assets/font/Dosis.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: ClashDisplay;
+  src: url("assets/font/ClashDisplay.ttf") format("truetype");
+}
+
+
+
+
+@theme inline {
+   --font-beauty: Beauty, "sans-serif";
+   --font-bangers: Bangers, "sans-serif";
+   --font-farsan: Farsan, "sans-serif";
+   --font-dosis: Dosis, "sans-serif";
+   --font-clash: ClashDisplay, "sans-serif";
+
+   --animate-infinite-ribbon: infinite-ribbon var(--ribbon-duration) linear
+  infinite;
+--animate-infinite-ribbon-reverse: infinite-ribbon-reverse
+  var(--ribbon-duration) linear infinite;
+
+@keyframes infinite-ribbon {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes infinite-ribbon-reverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+}
+
+
+
+
+
