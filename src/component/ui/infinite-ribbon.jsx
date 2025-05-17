@@ -17,7 +17,7 @@ export function InfiniteRibbon({
   return (
     <div
       className={cn(
-        "overflow-hidden max-w-full bg-zinc-100 text-white py-2 md:py-6 text-xl md:text-4xl font-black uppercase ",
+        "overflow-hidden font-clash max-w-full text-[#27272e] py-2 md:py-6 text-xl md:text-4xl font-black uppercase ",
         className
       )}
       style={{ transform: `rotate(${rotation}deg)` }}

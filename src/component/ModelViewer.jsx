@@ -6,7 +6,7 @@ import Loader from "./ui/Loader3d"; // pastikan path benar
 
 function Model() {
   const { scene } = useGLTF(modelUrl);
-  return <primitive object={scene} scale={0.45} position={[0, 0.1, 0]} />;
+  return <primitive object={scene} scale={0.25} position={[0, 0, 0]} />;
 }
 
 export default function ModelViewer() {

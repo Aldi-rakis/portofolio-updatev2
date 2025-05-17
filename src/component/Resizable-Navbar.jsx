@@ -74,7 +74,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute font-farsan inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-xl font-medium text-white transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        "absolute font-clash inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-xl font-medium text-white transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
         className
       )}>
       {items.map((item, idx) => (
@@ -87,7 +87,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-red-600 dark:bg-neutral-800" />
+              className="absolute inset-0 h-full w-full rounded-full bg-red-900 dark:bg-neutral-800" />
           )}
           <span className="relative z-20">{item.name}</span>
         </a>
