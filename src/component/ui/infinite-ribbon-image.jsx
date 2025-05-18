@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-export function InfiniteRibbon({
+export function InfiniteRibbonImage({
   items = [],           // [{ src: "...", label: "..." }]
   repeat = 50,
   duration = 15,

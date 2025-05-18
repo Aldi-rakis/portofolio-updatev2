@@ -22,6 +22,11 @@ import project2 from "../../assets/img/project/project-2.png";
 
 import tasicon from "../../assets/icon/tas.png";
 import { InfiniteRibbon } from "../../component/ui/infinite-ribbon.jsx";
+import { cn } from "../../lib/utils";
+// import SpotlightPreview from "../../component/SpotlightPreview.jsx";
+import { Spotlight } from "../../component/ui/spotlight.jsx";
+
+import { InfiniteRibbonImage } from "../../component/ui/infinite-ribbon-image.jsx";
 import Card from "../../component/Card.jsx";
 const Index = () => {
   const projects = [
@@ -40,7 +45,7 @@ const Index = () => {
       role: "Fullstack Developer",
       year: "2023",
       imageSrc:
-       project2,
+        project2,
       captionText: "Kendrick Lamar - GNX",
       link: "https://devrajchatribin.com/projects/aora",
     },
@@ -68,6 +73,7 @@ const Index = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+
   useEffect(() => {
     // Simulasi loading selama 2 detik, kamu bisa ganti sesuai event model ready
     const timer = setTimeout(() => {
@@ -79,25 +85,26 @@ const Index = () => {
 
 
   const tabs = [
-  {
-    title: "Development",
-    description: "uilding brand identities including working on logo, typography, iconography, colou r palette, visual language, and brand personality.",
-    image: "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
-  },
-  {
-    title: "UI/UX Design",
-    description: "uilding brand identities including working on logo, typography, iconography, colou",
-    image: "https://cdn.pixabay.com/photo/2024/03/09/14/58/laptop-8622746_1280.png",
-  },
-  {
-    title: "Branding",
-    description:
-      "Building brand identities including working on logo, typography, iconography, colour palette, visual language, and brand personality.",
-    image: "https://cdn.pixabay.com/photo/2016/11/20/09/06/laptop-1842297_1280.jpg",
-  },
-];
+    {
+      title: "Development",
+      description: "uilding brand identities including working on logo, typography, iconography, colou r palette, visual language, and brand personality.",
+      image: "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
+    },
+    {
+      title: "UI/UX Design",
+      description: "uilding brand identities including working on logo, typography, iconography, colou",
+      image: "https://cdn.pixabay.com/photo/2024/03/09/14/58/laptop-8622746_1280.png",
+    },
+    {
+      title: "Branding",
+      description:
+        "Building brand identities including working on logo, typography, iconography, colour palette, visual language, and brand personality.",
+      image: "https://cdn.pixabay.com/photo/2016/11/20/09/06/laptop-1842297_1280.jpg",
+    },
+  ];
 
-  const [activeTab, setActiveTab] = useState(0); // default Branding
+  const [activeTab, setActiveTab] = useState(null);
+  const [lastActiveTab, setLastActiveTab] = useState(0);
 
 
   return (
@@ -393,7 +400,11 @@ const Index = () => {
       </section>
 
       <section id="project" className="bg-[#0b0b0d] py-6">
-        <div className=" justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
+                  <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
+                  <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
+                  <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
+
+        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
           {projects.slice(0, 4).map((project, index) => (
             <div key={index}>
               <div
@@ -403,7 +414,7 @@ const Index = () => {
                 <TiltedCard
                   imageSrc={project.imageSrc}
                   altText={project.altText}
-                 
+
                   captionText={project.captionText}
                   rotateAmplitude={18}
                   scaleOnHover={1.3}
@@ -422,6 +433,8 @@ const Index = () => {
               </div>
             </div>
           ))}
+
+
         </div>
 
         <div className="flex justify-center items-center">
@@ -431,79 +444,138 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="bg-[#0b0b0d] py-6"> 
-         <h1 className="px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white">What I Do</h1>
-       <div className=" text-white min-h-screen p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
-     
-      {/* LEFT SIDE */}
-      <div className="flex flex-col gap-4 w-full md:w-1/2">
-        {tabs.map((tab, index) => (
-          <div key={index} className="overflow-hidden">
-            <motion.div
-              onClick={() => setActiveTab(index)}
-              className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${
-                activeTab === index ? "bg-gray-950" : ""
-              }`}
-              whileTap={{ scale: 0.98 }}
-            >
-              <h2 className="text-lg font-clash font-semibold flex items-center gap-2">
-                {tab.title}
-              </h2>
+      <section id="contact" className="bg-[#0b0b0d] py-2">
+        <div className="relative z-0">
+        <h1 className="font-clash px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white">What I Do</h1>
+        
+       <div className="absolute z-0 rounded-full blur-[60px] bg-[#0041BE] h-[200px] w-[400px] -top-20 opacity-15 left-20 transform "></div>
 
-              {/* CONTENT WITH SMOOTH ANIMATION */}
-              <AnimatePresence initial={false}>
-                {activeTab === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                    animate={{ 
-                      height: "auto", 
-                      opacity: 1, 
-                      marginTop: 8 
-                    }}
-                    exit={{ 
-                      height: 0, 
-                      opacity: 0,
-                      marginTop: 0,
-                      transition: { 
-                        opacity: { duration: 0.2 }, 
-                        height: { duration: 0.3 } 
-                      }
-                    }}
-                    transition={{ 
-                      duration: 0.4,
-                      opacity: { duration: 0.3 },
-                      height: { duration: 0.4 } 
-                    }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-lg font-dosis text-gray-300">
-                      {tab.description}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+        </div>
+        <div className=" relative text-white z-10 p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
+
+          {/* LEFT SIDE */}
+          <div className="flex flex-col gap-4 w-full md:w-1/2">
+            {tabs.map((tab, index) => (
+              <div key={index} className="overflow-hidden">
+                <motion.div
+                  onClick={() => {
+                    if (activeTab === index) {
+                      setActiveTab(null); // hide content
+                    } else {
+                      setActiveTab(index);
+                      setLastActiveTab(index); // simpan tab terakhir yang aktif
+                    }
+                  }}
+                  className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${activeTab === index ? "bg-gray-950" : ""
+                    }`}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <h2 className="text-lg font-clash font-semibold flex items-center gap-2">
+                    {tab.title}
+                  </h2>
+
+                  {/* CONTENT WITH SMOOTH ANIMATION */}
+                  <AnimatePresence initial={false}>
+                    {activeTab === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                        animate={{ height: "auto", opacity: 1, marginTop: 8 }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                          marginTop: 0,
+                          transition: {
+                            opacity: { duration: 0.2 },
+                            height: { duration: 0.3 },
+                          },
+                        }}
+                        transition={{
+                          duration: 0.4,
+                          opacity: { duration: 0.3 },
+                          height: { duration: 0.4 },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-lg font-dosis text-gray-300">
+                          {tab.description}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </div>
+            ))}
+
           </div>
-        ))}
-      </div>
 
-      {/* RIGHT SIDE */}
-      <div className="w-full md:w-1/2 flex relative">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={tabs[activeTab].image}
-            src={tabs[activeTab].image}
-            alt={tabs[activeTab].title}
-            initial={{ opacity: 0, x: 20, scale: 0.98 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -20, scale: 0.98 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="rounded-xl max-h-96 w-full object-cover shadow-xl"
-          />
-        </AnimatePresence>
-      </div>
-    </div>
+          {/* RIGHT SIDE */}
+          <div className="w-full md:w-1/2 flex relative">
+            <AnimatePresence mode="wait">
+              {lastActiveTab !== null && tabs[lastActiveTab] && (
+                <motion.img
+                  key={tabs[lastActiveTab].image}
+                  src={tabs[lastActiveTab].image}
+                  alt={tabs[lastActiveTab].title}
+                  initial={{ opacity: 0, x: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.98 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="rounded-xl max-h-80 w-full object-cover shadow-xl"
+                />
+              )}
+            </AnimatePresence>
+          </div>
+
+        </div>
       </section>
+
+      <section className="bg-[#0b0b0d] relative overflow-hidden py-10">
+        <div className="relative lg:px-20">
+          <InfiniteRibbonImage
+            items={[
+              { src: "https://devrajchatribin.com/skills/React.js.svg", label: "Brand A" },
+              { src: "https://devrajchatribin.com/skills/Node.js.svg", label: "Brand B" },
+              { src: "https://devrajchatribin.com/skills/Next.js.svg", label: "Brand C" },
+            ]}
+            repeat={6}
+            duration={20}
+          />
+
+          {/* LEFT GRADIENT */}
+          <div className="pointer-events-none absolute top-0 left-0 h-full w-200 bg-gradient-to-r from-[#0b0b0d] to-transparent z-10" />
+
+          {/* RIGHT GRADIENT */}
+          <div className="pointer-events-none absolute top-0 right-0 h-full w-300 bg-gradient-to-l from-[#0b0b0d] to-transparent z-10" />
+        </div>
+      </section>
+
+      <section>
+        <div className="relative flex h-[20rem] w-full overflow-hidden rounded-md bg-black/[0.96] antialiased md:items-center md:justify-center">
+          <div
+            className={cn(
+              "pointer-events-none absolute inset-0 [background-size:40px_40px] select-none",
+              "[background-image:linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)]",
+            )}
+          />
+
+          <Spotlight
+            className="-top-40 left-0 md:-top-20 md:left-60"
+            fill="white"
+          />
+          <div className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0">
+            <h1 className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl">
+              Get intouch <br /> is the new trend.
+            </h1>
+            <p className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300">
+              Spotlight effect is a great way to draw attention to a specific part
+              of the page. Here, we are drawing the attention towards the text
+              section of the page. I don&apos;t know why but I&apos;m running out of
+              copy.
+            </p>
+          </div>
+        </div>
+      </section>
+
 
       <section id="footer" className="bg-[#0b0b0d] py-20 text-white">
         <div className="max-w-6xl mx-auto px-4 flex flex-col">
