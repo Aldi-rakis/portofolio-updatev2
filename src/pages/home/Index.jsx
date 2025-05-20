@@ -18,8 +18,6 @@ import wave from "../../assets/bg/wave2.svg";
 import project1 from "../../assets/img/project/project-1.png";
 import project2 from "../../assets/img/project/project-2.png";
 
-
-
 import tasicon from "../../assets/icon/tas.png";
 import { InfiniteRibbon } from "../../component/ui/infinite-ribbon.jsx";
 import { cn } from "../../lib/utils";
@@ -28,14 +26,15 @@ import { Spotlight } from "../../component/ui/spotlight.jsx";
 
 import { InfiniteRibbonImage } from "../../component/ui/infinite-ribbon-image.jsx";
 import Card from "../../component/Card.jsx";
+import { delay, stagger } from "motion";
+import { transition } from "three/examples/jsm/tsl/display/TransitionNode.js";
 const Index = () => {
   const projects = [
     {
       title: "AORA",
       role: "Fullstack Developer",
       year: "2023",
-      imageSrc:
-        project1,
+      imageSrc: project1,
       altText: "Kendrick Lamar - GNX Album Cover",
       captionText: "Kendrick Lamar - GNX",
       link: "https://devrajchatribin.com/projects/aora",
@@ -44,8 +43,7 @@ const Index = () => {
       title: "AORA",
       role: "Fullstack Developer",
       year: "2023",
-      imageSrc:
-        project2,
+      imageSrc: project2,
       captionText: "Kendrick Lamar - GNX",
       link: "https://devrajchatribin.com/projects/aora",
     },
@@ -73,7 +71,6 @@ const Index = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-
   useEffect(() => {
     // Simulasi loading selama 2 detik, kamu bisa ganti sesuai event model ready
     const timer = setTimeout(() => {
@@ -83,29 +80,57 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
   const tabs = [
     {
       title: "Development",
-      description: "uilding brand identities including working on logo, typography, iconography, colou r palette, visual language, and brand personality.",
-      image: "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
-    },
-    {
-      title: "UI/UX Design",
-      description: "uilding brand identities including working on logo, typography, iconography, colou",
-      image: "https://cdn.pixabay.com/photo/2024/03/09/14/58/laptop-8622746_1280.png",
-    },
-    {
-      title: "Branding",
       description:
-        "Building brand identities including working on logo, typography, iconography, colour palette, visual language, and brand personality.",
-      image: "https://cdn.pixabay.com/photo/2016/11/20/09/06/laptop-1842297_1280.jpg",
+        "Building responsive websites and applications. Providing users with an enriching experience that adapts to any device and screen size.",
+      image:
+        "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
+    },
+    {
+      title: "System Architecture",
+      description:
+        "Designing scalable and maintainable systems tailored to business needs and long-term growth.",
+      image:
+        "https://cdn.pixabay.com/photo/2024/03/09/14/58/laptop-8622746_1280.png",
+    },
+    {
+      title: "UI/UX Implementation",
+      description:
+        "Creating clean, modern interfaces with a focus on usability and user engagement.",
+      image:
+        "https://cdn.pixabay.com/photo/2016/11/20/09/06/laptop-1842297_1280.jpg",
+    },
+    {
+      title: "API Development",
+      description:
+        "Developing secure and efficient RESTful APIs for smooth and reliable data communication between systems.",
+      image:
+        "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
     },
   ];
 
   const [activeTab, setActiveTab] = useState(null);
   const [lastActiveTab, setLastActiveTab] = useState(0);
 
+  const containerVariants = {
+    hidden: {  x: 100 },
+    visible: {  x: 0, 
+      transition: {
+         delay: 0.5,
+        when:"beforeChildren" }
+     },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, x: 10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      staggerChildren: 1.2,
+    },
+  };
 
   return (
     <div className="">
@@ -153,14 +178,13 @@ const Index = () => {
               <motion.p
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-
-                transition={
-                  { duration: 1 }
-                }
-                className="font-clash z-10 text-2xl text-[#ffff]">
-                An aspiring Fullstack Developer. Who brings ideas to life
-                through code, building seamless experiences from backend logic
-                to frontend finesse.
+                transition={{ duration: 1 }}
+                className="font-clash z-10 text-2xl text-[#ffff]"
+              >
+                I am a Fullstack Web Developer specializing in <br /> end-to-end
+                web application development. From system architecture to
+                deployment, I deliver tailored solutions that meet your business
+                goals.
               </motion.p>
             </div>
 
@@ -192,8 +216,13 @@ const Index = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
-              className=" justify-center items-center  flex">
-              <img className="z-10 mb-0 md:mb-14 w-50 lg:w-70" src={avatarrakis} alt="" />
+              className=" justify-center items-center  flex"
+            >
+              <img
+                className="z-10 mb-0 md:mb-14 w-50 lg:w-70"
+                src={avatarrakis}
+                alt=""
+              />
             </motion.div>
 
             {/* <div
@@ -223,14 +252,8 @@ const Index = () => {
           // backgroundImage="/images/bg.jpg"
           /> */}
 
-
-
-          <InfiniteRibbon
-            rotation={0}
-            className=""
-            separator="✦"
-          >
-            Web  Developer ✦ Fullstack  Developer ✦ Software  Engineer ✦ Project
+          <InfiniteRibbon rotation={0} className="" separator="✦">
+            Web Developer ✦ Fullstack Developer ✦ Software Engineer ✦ Project
           </InfiniteRibbon>
         </div>
         <div></div>
@@ -239,7 +262,6 @@ const Index = () => {
       <section id="about">
         <div className="bg-[#0b0b0d] flex-col flex  md:flex-row w-full gap-10 px-10 lg:px-30 py-10 justify-center text-center items-center">
           <div className="w-full md:w-1/3 relative ">
-
             <motion.h1
               className="text-white font-clash text-4xl font-semibold text-center pb-2"
               variants={{
@@ -267,13 +289,12 @@ const Index = () => {
                 </motion.span>
               ))}
             </motion.h1>
-
-
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 1, ease: "easeInOut" }}
-              className="relative">
+              className="relative"
+            >
               <img
                 className="absolute -top-16 left-28  transform -translate-x-1/2 w-10"
                 src={starColor}
@@ -296,8 +317,10 @@ const Index = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute top-20 right-0 z-0" src={bgRing} alt="" />
-
+              className="absolute top-20 right-0 z-0"
+              src={bgRing}
+              alt=""
+            />
             <motion.img
               initial={{ opacity: 8, y: -40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +329,6 @@ const Index = () => {
               src={avatar}
               alt=""
             />
-
           </div>
 
           <div className="w-full md:w-2/3">
@@ -324,10 +346,11 @@ const Index = () => {
               initial="hidden"
               whileInView="visible"
             >
-              {"I'm a FullstackDeveloper with 2+ years of experience in software development. I specialize in system architecture, API development, server management, and problem-solving. I also handle project planning, implementation, and deployment with a focus on building efficient and user-centric digital solutions."
+              {"I'm a Fullstack-Developer with over 2 years of experience in software development. I specialize in system architecture, API development, and problem-solving. I also handle project planning, implementation, and deployment, with a focus on building efficient, user-centric digital solutions, supported by modern and responsive front-end design."
                 .split(" ")
                 .map((word, i) => {
-                  const isTarget = word === "FullstackDeveloper" || word === "Developer";
+                  const isTarget =
+                    word === "Fullstack-Developer" || word === "Developer";
                   return (
                     <motion.span
                       key={i}
@@ -338,7 +361,10 @@ const Index = () => {
                       style={{ display: "inline-block", marginRight: "5px" }}
                     >
                       {isTarget ? (
-                        <span style={{ backgroundColor: "rgba(255,93,32,1)" }} className="text-white px-1 font-bold rounded-sm">
+                        <span
+                          style={{ backgroundColor: "rgba(255,93,32,1)" }}
+                          className="text-white px-1 font-bold rounded-sm"
+                        >
                           {word}
                         </span>
                       ) : (
@@ -348,9 +374,6 @@ const Index = () => {
                   );
                 })}
             </motion.p>
-
-
-
           </div>
         </div>
 
@@ -362,13 +385,14 @@ const Index = () => {
               { value: "90+", text: "Projects I Have\nWorked on" },
             ].map((item, index) => {
               // Tentukan arah animasi berdasarkan index
-              const direction = index === 0 ? 250 : index === 1 ? 0 : index === 2 ? -250 : 0;
+              const direction =
+                index === 0 ? 250 : index === 1 ? 0 : index === 2 ? -250 : 0;
 
               return (
                 <React.Fragment key={index}>
                   <div className="group text-center hover:scale-105 transition-transform duration-300">
                     <motion.h2
-                      initial={{ opacity: 0, x: direction, }}
+                      initial={{ opacity: 0, x: direction }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.8, ease: "easeIn" }}
                       className="shine-effect text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-pink-500 to-orange-400 text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(255,100,200,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_25px_rgba(255,120,200,0.8)]"
@@ -383,38 +407,72 @@ const Index = () => {
 
                   {index < 2 && (
                     <motion.div
-                      initial={{ height: 0, }}
-                      whileInView={{ height: 96, }} // h-24 = 96px
-                      transition={{ duration: 1.7, delay: 0.8, ease: "easeOut" }}
-                      className="hidden md:block h-24 border-2 border-orange-500">
-
-                    </motion.div>
+                      initial={{ height: 0 }}
+                      whileInView={{ height: 96 }} // h-24 = 96px
+                      transition={{
+                        duration: 1.7,
+                        delay: 0.8,
+                        ease: "easeOut",
+                      }}
+                      className="hidden md:block h-24 border-2 border-orange-500"
+                    ></motion.div>
                   )}
                 </React.Fragment>
               );
             })}
           </div>
-
-
         </div>
       </section>
 
       <section id="project" className="bg-[#0b0b0d] py-6">
-                  <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
-                  <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
-                  <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
-
         <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
-          {projects.slice(0, 4).map((project, index) => (
-            <div key={index}>
+          <h2 className="text-start text-3xl font-bold text-white">
+            My Projects
+          </h2>
+        </div>
+        <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
+        <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
+        <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
+
+     <motion.div
+          variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    delayChildren: .5,
+                    staggerChildren: .55,
+                    ease: "easeIn",
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="visible"
+          className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={{
+                    hidden: { opacity: 0, x: 10 },
+                    visible: { opacity: 1, x: 0,
+                      transition: {
+                        delay: index * 0.5,
+                      },
+                      
+                     },
+                  }}
+              className="cursor-pointer rounded-2xl"
+              onClick={() => window.open(project.link, "_blank")}
+            >
               <div
-                onClick={() => window.open(project.link, "_blank")}
-                className="w-full px-20 bg-gradient-to-b from-black to-gray-800 rounded-2xl shadow-md transform hover:scale-105 transition-transform duration-300"
-              >
+              
+             
+              
+              className="w-full px-20 bg-gradient-to-b from-black to-gray-800 rounded-2xl shadow-md">
                 <TiltedCard
                   imageSrc={project.imageSrc}
                   altText={project.altText}
-
                   captionText={project.captionText}
                   rotateAmplitude={18}
                   scaleOnHover={1.3}
@@ -431,11 +489,9 @@ const Index = () => {
                   <p className="text-sm">{project.year}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-
-
-        </div>
+        </motion.div>
 
         <div className="flex justify-center items-center">
           <button className="text-white text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
@@ -446,13 +502,13 @@ const Index = () => {
 
       <section id="contact" className="bg-[#0b0b0d] py-2">
         <div className="relative z-0">
-        <h1 className="font-clash px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white">What I Do</h1>
-        
-       <div className="absolute z-0 rounded-full blur-[60px] bg-[#0041BE] h-[200px] w-[400px] -top-20 opacity-15 left-20 transform "></div>
+          <h1 className="font-clash px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white">
+            What I Do
+          </h1>
 
+          <div className="absolute z-0 rounded-full blur-[60px] bg-[#0041BE] h-[200px] w-[400px] -top-20 opacity-15 left-20 transform "></div>
         </div>
         <div className=" relative text-white z-10 p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
-
           {/* LEFT SIDE */}
           <div className="flex flex-col gap-4 w-full md:w-1/2">
             {tabs.map((tab, index) => (
@@ -466,8 +522,9 @@ const Index = () => {
                       setLastActiveTab(index); // simpan tab terakhir yang aktif
                     }
                   }}
-                  className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${activeTab === index ? "bg-gray-950" : ""
-                    }`}
+                  className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${
+                    activeTab === index ? "bg-gray-950" : ""
+                  }`}
                   whileTap={{ scale: 0.98 }}
                 >
                   <h2 className="text-lg font-clash font-semibold flex items-center gap-2">
@@ -505,7 +562,6 @@ const Index = () => {
                 </motion.div>
               </div>
             ))}
-
           </div>
 
           {/* RIGHT SIDE */}
@@ -525,7 +581,6 @@ const Index = () => {
               )}
             </AnimatePresence>
           </div>
-
         </div>
       </section>
 
@@ -533,9 +588,18 @@ const Index = () => {
         <div className="relative lg:px-20">
           <InfiniteRibbonImage
             items={[
-              { src: "https://devrajchatribin.com/skills/React.js.svg", label: "Brand A" },
-              { src: "https://devrajchatribin.com/skills/Node.js.svg", label: "Brand B" },
-              { src: "https://devrajchatribin.com/skills/Next.js.svg", label: "Brand C" },
+              {
+                src: "https://devrajchatribin.com/skills/React.js.svg",
+                label: "Brand A",
+              },
+              {
+                src: "https://devrajchatribin.com/skills/Node.js.svg",
+                label: "Brand B",
+              },
+              {
+                src: "https://devrajchatribin.com/skills/Next.js.svg",
+                label: "Brand C",
+              },
             ]}
             repeat={6}
             duration={20}
@@ -554,7 +618,7 @@ const Index = () => {
           <div
             className={cn(
               "pointer-events-none absolute inset-0 [background-size:40px_40px] select-none",
-              "[background-image:linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)]",
+              "[background-image:linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)]"
             )}
           />
 
@@ -562,20 +626,42 @@ const Index = () => {
             className="-top-40 left-0 md:-top-20 md:left-60"
             fill="white"
           />
-          <div className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0">
-            <h1 className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl">
-              Get intouch <br /> is the new trend.
-            </h1>
-            <p className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300">
-              Spotlight effect is a great way to draw attention to a specific part
-              of the page. Here, we are drawing the attention towards the text
-              section of the page. I don&apos;t know why but I&apos;m running out of
-              copy.
-            </p>
-          </div>
+          <motion.div
+            className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <motion.h1
+              className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Get in <span className="text-[#ff5d20]"> touch </span> <br />
+              <motion.span
+                className="text-5xl"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.02, delay: 0.5 }}
+              >
+                lets build something great together.
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              I'm open to new projects, collaborations, or just a friendly chat.
+              Feel free to reach out anytime!. Whether you have questions or
+              want to discuss an idea, I’m here to help.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
-
 
       <section id="footer" className="bg-[#0b0b0d] py-20 text-white">
         <div className="max-w-6xl mx-auto px-4 flex flex-col">
