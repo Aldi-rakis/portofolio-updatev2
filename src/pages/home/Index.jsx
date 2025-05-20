@@ -26,8 +26,7 @@ import { Spotlight } from "../../component/ui/spotlight.jsx";
 
 import { InfiniteRibbonImage } from "../../component/ui/infinite-ribbon-image.jsx";
 import Card from "../../component/Card.jsx";
-import { delay, stagger } from "motion";
-import { transition } from "three/examples/jsm/tsl/display/TransitionNode.js";
+import { delay } from "motion";
 const Index = () => {
   const projects = [
     {
@@ -114,23 +113,19 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState(null);
   const [lastActiveTab, setLastActiveTab] = useState(0);
 
-  const containerVariants = {
-    hidden: {  x: 100 },
-    visible: {  x: 0, 
-      transition: {
-         delay: 0.5,
-        when:"beforeChildren" }
-     },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: 10 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      staggerChildren: 1.2,
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.4, 0, 0.2, 1],
     },
-  };
+  },
+};
+
 
   return (
     <div className="">
@@ -148,7 +143,7 @@ const Index = () => {
             <AbstractLineBackground />
             {/* Konten halaman di sini */}
           </div>
-          <div className="absolute rounded-full blur-[100px] bg-[#E33030] h-[400px] w-[400px] opacity-5 left-1/2 transform -translate-x-1/2"></div>
+          <div className="absolute rounded-full blur-[100px] bg-[#E33030] h-[400px] md:w-[400px] opacity-5 left-1/2 transform -translate-x-1/2"></div>
           <div className="absolute rounded-full blur-[100px] bg-[#FF5D20] h-[200px] w-[300px] opacity-65 right-0 transform translate-y-1/4"></div>
 
           <div
@@ -181,10 +176,9 @@ const Index = () => {
                 transition={{ duration: 1 }}
                 className="font-clash z-10 text-2xl text-[#ffff]"
               >
-                I am a Fullstack Web Developer specializing in <br /> end-to-end
-                web application development. From system architecture to
-                deployment, I deliver tailored solutions that meet your business
-                goals.
+                I am a Fullstack Web Developer specializing in <br /> end-to-end web
+                application development. From system architecture to deployment,
+                I deliver tailored solutions that meet your business goals.
               </motion.p>
             </div>
 
@@ -425,73 +419,49 @@ const Index = () => {
       </section>
 
       <section id="project" className="bg-[#0b0b0d] py-6">
-        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
-          <h2 className="text-start text-3xl font-bold text-white">
-            My Projects
-          </h2>
+       <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
+           <h2 className="text-start text-3xl font-bold text-white">My Projects</h2>
         </div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
-
-     <motion.div
-          variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    delayChildren: .5,
-                    staggerChildren: .55,
-                    ease: "easeIn",
-                  },
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-          className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center"
+           
+       <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
+      {projects.slice(0, 4).map((project, index) => (
+        <motion.div
+          key={index}
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ delay: index * 0.3 }}  // delay manual per card
+          className="cursor-pointer rounded-2xl"
+       
+          onClick={() => window.open(project.link, "_blank")}
         >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={{
-                    hidden: { opacity: 0, x: 10 },
-                    visible: { opacity: 1, x: 0,
-                      transition: {
-                        delay: index * 0.5,
-                      },
-                      
-                     },
-                  }}
-              className="cursor-pointer rounded-2xl"
-              onClick={() => window.open(project.link, "_blank")}
-            >
-              <div
-              
-             
-              
-              className="w-full px-20 bg-gradient-to-b from-black to-gray-800 rounded-2xl shadow-md">
-                <TiltedCard
-                  imageSrc={project.imageSrc}
-                  altText={project.altText}
-                  captionText={project.captionText}
-                  rotateAmplitude={18}
-                  scaleOnHover={1.3}
-                  rotateOnHover={true}
-                  showMobileWarning={false}
-                  showTooltip={true}
-                  displayOverlayContent={true}
-                />
-              </div>
-              <div className="text-white text-3xl font-semibold text-start mt-4">
-                <p>{project.title}</p>
-                <div className="flex justify-between">
-                  <p className="text-sm">{project.role}</p>
-                  <p className="text-sm">{project.year}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 rounded-2xl shadow-md">
+            <TiltedCard
+              imageSrc={project.imageSrc}
+              altText={project.altText}
+              captionText={project.captionText}
+              rotateAmplitude={18}
+              scaleOnHover={1.3}
+              rotateOnHover={true}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+            />
+          </div>
+          <div className="text-white text-3xl font-semibold text-start mt-4">
+            <p>{project.title}</p>
+            <div className="flex justify-between">
+              <p className="text-sm">{project.role}</p>
+              <p className="text-sm">{project.year}</p>
+            </div>
+          </div>
         </motion.div>
+      ))}
+    </div>
 
         <div className="flex justify-center items-center">
           <button className="text-white text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
@@ -506,7 +476,6 @@ const Index = () => {
             What I Do
           </h1>
 
-          <div className="absolute z-0 rounded-full blur-[60px] bg-[#0041BE] h-[200px] w-[400px] -top-20 opacity-15 left-20 transform "></div>
         </div>
         <div className=" relative text-white z-10 p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
           {/* LEFT SIDE */}
@@ -606,10 +575,10 @@ const Index = () => {
           />
 
           {/* LEFT GRADIENT */}
-          <div className="pointer-events-none absolute top-0 left-0 h-full w-200 bg-gradient-to-r from-[#0b0b0d] to-transparent z-10" />
+          <div className="pointer-events-none absolute top-0 left-0 h-full w-5 lg:w-200 bg-gradient-to-r from-[#0b0b0d] to-transparent z-10" />
 
           {/* RIGHT GRADIENT */}
-          <div className="pointer-events-none absolute top-0 right-0 h-full w-300 bg-gradient-to-l from-[#0b0b0d] to-transparent z-10" />
+          <div className="pointer-events-none absolute top-0 right-0 h-full  w-50 lg:w-300 bg-gradient-to-l from-[#0b0b0d] to-transparent z-10" />
         </div>
       </section>
 
@@ -627,39 +596,37 @@ const Index = () => {
             fill="white"
           />
           <motion.div
-            className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <motion.h1
-              className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              Get in <span className="text-[#ff5d20]"> touch </span> <br />
-              <motion.span
-                className="text-5xl"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.02, delay: 0.5 }}
-              >
-                lets build something great together.
-              </motion.span>
-            </motion.h1>
+      className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+    >
+      <motion.h1
+        className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
+        Get in <span className="text-[#ff5d20]"> touch </span> <br /> 
+        <motion.span
+          className="text-3xl lg:text-5xl"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.02, delay: 0.5 }}
+        >
+        lets build something great together.
+        </motion.span>
+      </motion.h1>
 
-            <motion.p
-              className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-            >
-              I'm open to new projects, collaborations, or just a friendly chat.
-              Feel free to reach out anytime!. Whether you have questions or
-              want to discuss an idea, I’m here to help.
-            </motion.p>
-          </motion.div>
+      <motion.p
+        className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.9 }}
+      >
+        I'm open to new projects, collaborations, or just a friendly chat. Feel free to reach out anytime!. Whether you have questions or want to discuss an idea, I’m here to help.
+      </motion.p>
+    </motion.div>
         </div>
       </section>
 
