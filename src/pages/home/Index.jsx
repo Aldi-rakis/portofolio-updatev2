@@ -129,7 +129,7 @@ const cardVariants = {
 
   return (
     <div className="">
-      <section className="  bg-[#0b0b0d]">
+      <section className=" dark:bg-[#f6f4e5] bg-[#0b0b0d]">
         <div className="absolute z-0 w-full h-[100vh]">
           <img
             src={wave}
@@ -160,7 +160,7 @@ const cardVariants = {
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
-                className="font-bangers relative lg:leading-22 text-6xl lg:text-[120px] text-white"
+                className="font-bangers relative lg:leading-22 text-6xl lg:text-[120px] text-white dark:text-black"
               >
                 Aldhi Raqiswandri
                 <span className="hidden md:block font-beauty font-semibold -left-8 top-0 absolute text-5xl text-[#FFA620] ">
@@ -174,7 +174,7 @@ const cardVariants = {
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="font-clash z-10 text-2xl text-[#ffff]"
+                className="font-clash z-10 text-2xl text-[#ffff] dark:text-black"
               >
                 I am a Fullstack Web Developer specializing in <br /> end-to-end web
                 application development. From system architecture to deployment,
@@ -182,13 +182,33 @@ const cardVariants = {
               </motion.p>
             </div>
 
-            <div className="w-full">
+            <div className="w-full gap-8 flex">
               <motion.button
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
-                className="relative px-10 py-3 font-semibold text-white bg-red-500 rounded-lg shadow-lg transition duration-300 ease-in-out hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400
-                             before:absolute before:inset-0 before:rounded-lg  before:bg-red-600 hover:scale-105 before:opacity-20 before:animate-pulse"
+                className="relative px-10 py-3 font-clash font-semibold text-white bg-gradient-to-b from-orange-500 to-red-700 rounded-lg shadow-lg transition duration-300 ease-in-out hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400
+                             before:absolute before:inset-0 before:rounded-lg   hover:scale-105 before:opacity-10 before:animate-pulse"
+              >
+                Hire Me
+                <motion.img
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="absolute -top-5 right-0 w-10 "
+                  src={tasicon}
+                  alt="sss"
+                />
+              </motion.button>
+
+               <motion.button
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+                className="relative px-10 py-3 font-clash font-semibold text-white bg-gradient-to-b from-orange-500 to-red-700 rounded-lg shadow-lg transition duration-300 ease-in-out hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400
+                             before:absolute before:inset-0 before:rounded-lg   hover:scale-105 before:opacity-10 before:animate-pulse"
               >
                 Hire Me
                 <motion.img
@@ -205,7 +225,7 @@ const cardVariants = {
             </div>
           </div>
 
-          <div className="w-full items-center justify-center  lg:w-1/2">
+          <div className="w-full items-center justify-center hidden lg:flex  lg:w-1/2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -231,7 +251,7 @@ const cardVariants = {
         </div>
       </section>
 
-      <section className="relative  bg-[#0b0b0d]    mx-auto  ">
+      <section className="relative  bg-[#0b0b0d]  dark:bg-[#f6f4e5]  mx-auto  ">
         {/* <div className="absolute  blur-[200px] bg-[#E33030] h-[200px] w-[400px] top-0 transform right-0"></div> */}
 
         <div className="border-y-[0.1px] border-[#dbdbda15] flex items-center  flex-col justify-center gap-10 overflow-hidden  w-full">
@@ -254,10 +274,10 @@ const cardVariants = {
       </section>
 
       <section id="about">
-        <div className="bg-[#0b0b0d] flex-col flex  md:flex-row w-full gap-10 px-10 lg:px-30 py-10 justify-center text-center items-center">
+        <div className="bg-[#0b0b0d] dark:bg-[#f6f4e5] flex-col flex  md:flex-row w-full gap-10 px-10 lg:px-30 py-10 justify-center text-center items-center">
           <div className="w-full md:w-1/3 relative ">
             <motion.h1
-              className="text-white font-clash text-4xl font-semibold text-center pb-2"
+              className="text-white dark:text-black font-clash text-4xl font-semibold text-center pb-2"
               variants={{
                 hidden: { opacity: 0 },
                 visible: {
@@ -327,7 +347,7 @@ const cardVariants = {
 
           <div className="w-full md:w-2/3">
             <motion.p
-              className="font-dosis text-white text-xl lg:text-3xl md:leading-12 text-justify md:text-justify"
+              className="font-dosis text-white dark:text-black text-xl lg:text-3xl md:leading-12 text-center md:text-justify"
               variants={{
                 hidden: { opacity: 0 },
                 visible: {
@@ -371,12 +391,12 @@ const cardVariants = {
           </div>
         </div>
 
-        <div className="bg-[#0b0b0d] text-white py-16">
+        <div className="bg-[#0b0b0d] dark:bg-[#f6f4e5] text-white py-16">
           <div className="max-w-6xl mx-auto px-4 flex flex-row md:flex-row justify-around items-center gap-10 md:gap-0">
             {[
-              { value: "5+", text: "Years of\nDesign Experience" },
-              { value: "50+", text: "Overall Global\nCustomers" },
-              { value: "90+", text: "Projects I Have\nWorked on" },
+              { value: "2+", text: "Years Experience" },
+              { value: "10+", text: "Overall Global Customers" },
+              { value: "15+", text: "Projects Implemented" },
             ].map((item, index) => {
               // Tentukan arah animasi berdasarkan index
               const direction =
@@ -394,7 +414,7 @@ const cardVariants = {
                       {item.value}
                     </motion.h2>
 
-                    <p className="text-sm md:text-xl mt-3 leading-tight whitespace-pre-line text-gray-300">
+                    <p className="text-sm md:text-xl mt-3 leading-tight whitespace-pre-line text-gray-300  dark:font-extrabold dark:bg-gradient-to-t dark:from-yellow-400 dark:to-white-600 dark:bg-clip-text dark:text-transparent">
                       {item.text}
                     </p>
                   </div>
@@ -418,9 +438,10 @@ const cardVariants = {
         </div>
       </section>
 
-      <section id="project" className="bg-[#0b0b0d] py-6">
-       <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
-           <h2 className="text-start text-3xl font-bold text-white">My Projects</h2>
+      <section id="project" className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-6">
+       <div className="z-10 relative justify-center items-center gap-10 px-4 lg:px-45 py- ">
+           <h2 className="text-start font-clash text-3xl font-bold text-white dark:text-black">My Projects</h2>
+           <p className="text-start font-dosis text-xl font-bold text-white dark:text-black">- Showcase project -</p>
         </div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
@@ -439,7 +460,7 @@ const cardVariants = {
        
           onClick={() => window.open(project.link, "_blank")}
         >
-          <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 rounded-2xl shadow-md">
+          <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
             <TiltedCard
               imageSrc={project.imageSrc}
               altText={project.altText}
@@ -452,7 +473,7 @@ const cardVariants = {
               displayOverlayContent={true}
             />
           </div>
-          <div className="text-white text-3xl font-semibold text-start mt-4">
+          <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
             <p>{project.title}</p>
             <div className="flex justify-between">
               <p className="text-sm">{project.role}</p>
@@ -464,20 +485,20 @@ const cardVariants = {
     </div>
 
         <div className="flex justify-center items-center">
-          <button className="text-white text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
+          <button className="text-white dark:text-black text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:bg-amber-500 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
             Show more
           </button>
         </div>
       </section>
 
-      <section id="contact" className="bg-[#0b0b0d] py-2">
+      <section id="contact" className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-2">
         <div className="relative z-0">
-          <h1 className="font-clash px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white">
+          <h1 className="font-clash px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white dark:text-black">
             What I Do
           </h1>
 
         </div>
-        <div className=" relative text-white z-10 p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
+        <div className=" relative text-white dark:text-black z-10 p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
           {/* LEFT SIDE */}
           <div className="flex flex-col gap-4 w-full md:w-1/2">
             {tabs.map((tab, index) => (
@@ -492,7 +513,7 @@ const cardVariants = {
                     }
                   }}
                   className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${
-                    activeTab === index ? "bg-gray-950" : ""
+                    activeTab === index ? "bg-gray-950 dark:bg-[#f4f3e5]" : ""
                   }`}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -522,7 +543,7 @@ const cardVariants = {
                         }}
                         className="overflow-hidden"
                       >
-                        <p className="text-lg font-dosis text-gray-300">
+                        <p className="text-lg font-dosis text-gray-300 dark:text-gray-600">
                           {tab.description}
                         </p>
                       </motion.div>
@@ -553,7 +574,7 @@ const cardVariants = {
         </div>
       </section>
 
-      <section className="bg-[#0b0b0d] relative overflow-hidden py-10">
+      <section className="bg-[#0b0b0d] dark:bg-[#f6f4e5] relative overflow-hidden py-10">
         <div className="relative lg:px-20">
           <InfiniteRibbonImage
             items={[
@@ -575,19 +596,19 @@ const cardVariants = {
           />
 
           {/* LEFT GRADIENT */}
-          <div className="pointer-events-none absolute top-0 left-0 h-full w-5 lg:w-200 bg-gradient-to-r from-[#0b0b0d] to-transparent z-10" />
+          <div className="pointer-events-none absolute top-0 left-0 h-full w-5 lg:w-200 bg-gradient-to-r from-[#0b0b0d] dark:from-[#f6f4e5] to-transparent z-10" />
 
           {/* RIGHT GRADIENT */}
-          <div className="pointer-events-none absolute top-0 right-0 h-full  w-50 lg:w-300 bg-gradient-to-l from-[#0b0b0d] to-transparent z-10" />
+          <div className="pointer-events-none absolute top-0 right-0 h-full  w-50 lg:w-300 bg-gradient-to-l from-[#0b0b0d] dark:from-[#f6f4e5] to-transparent z-10" />
         </div>
       </section>
 
       <section>
-        <div className="relative flex h-[20rem] w-full overflow-hidden rounded-md bg-black/[0.96] antialiased md:items-center md:justify-center">
+        <div className="relative flex h-[20rem] w-full overflow-hidden rounded-md bg-black/[0.96] dark:bg-[#f6f4e5] antialiased md:items-center md:justify-center">
           <div
             className={cn(
               "pointer-events-none absolute inset-0 [background-size:40px_40px] select-none",
-              "[background-image:linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)]"
+              "[background-image:linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)] dark:[background-image:linear-gradient(to_right,#f6f4e5_1px,transparent_1px),linear-gradient(to_bottom,#f6f4e5_1px,transparent_1px)]"
             )}
           />
 
@@ -602,7 +623,7 @@ const cardVariants = {
       transition={{ duration: 0.8, delay: 0.3 }}
     >
       <motion.h1
-        className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
+        className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-neutral-800 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
@@ -619,7 +640,7 @@ const cardVariants = {
       </motion.h1>
 
       <motion.p
-        className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300"
+        className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300 dark:text-black md:text-lg"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.9 }}
@@ -630,10 +651,10 @@ const cardVariants = {
         </div>
       </section>
 
-      <section id="footer" className="bg-[#0b0b0d] py-20 text-white">
+      <section id="footer" className="bg-[#0b0b0d] dark:bg-[#f6f4e5]   py-20 text-white dark:text-black">
         <div className="max-w-6xl mx-auto px-4 flex flex-col">
-          <div className="bg-gradient-to-b from-white/10 to-white/5 rounded-xl p-6 lg:p-10 flex flex-col lg:flex-col items-center lg:items-start justify-between gap-10 text-center lg:text-left border border-white/10">
-            <div className="relative flex flex-col md:flex-row gap-8 md:gap-4 w-full px-6">
+          <div className="bg-gradient-to-b from-white/10 to-white/5 dark:bg-gradient-to-b dark:from-yellow/10 dark:to-white/80 rounded-xl p-6 lg:p-10 flex flex-col lg:flex-col items-center lg:items-start justify-between gap-10 text-center lg:text-left border border-white/10 dark:border-black/20">
+            <div className="relative flex flex-col md:flex-row gap-8 md:gap-4 w-full px-2 md:px-6">
               {/* <div className='absolute w-full -bottom-10 h-1.5 bg-white/10'></div> */}
 
               <div className="w-full lg:w-1/2 justify-center flex">
@@ -644,12 +665,12 @@ const cardVariants = {
                 />
               </div>
 
-              <div className="w-1/2 flex flex-row gap-4 md:gap-10  md:justify-center items-center text-start md:text-end">
+              <div className="w-1/2 flex flex-row gap-10 md:gap-10  md:justify-center items-center text-start md:text-end">
                 <div>
-                  <h3 className="font-clash font-semibold text-3xl mb-4">
+                  <h3 className="font-clash font-semibold text-2xl md:text-3xl mb-4">
                     Professional Links
                   </h3>
-                  <ul className="space-y-2 text-2xl font-thin text-white/80">
+                  <ul className="space-y-2 text-2xl font-thin text-white/80 dark:text-black">
                     <li>
                       <a href="#">LinkedIn</a>
                     </li>
@@ -665,10 +686,10 @@ const cardVariants = {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-clash font-semibold text-3xl mb-4">
+                  <h3 className="font-clash font-semibold text-2xl md:text-3xl mb-4">
                     Quick Menu
                   </h3>
-                  <ul className="space-y-2 text-2xl font-thin text-white/80">
+                  <ul className="space-y-2 text-2xl font-thin text-white/80 dark:text-black">
                     <li>
                       <a href="#">Home</a>
                     </li>
@@ -687,7 +708,7 @@ const cardVariants = {
             </div>
 
             {/* Copyright & Social */}
-            <div className=" w-full flex flex-col lg:flex-row justify-between items-center border-t-4 border-white/10 pt-6 text-sm text-white/50 gap-4">
+            <div className=" w-full flex flex-col lg:flex-row justify-between items-center border-t-4 border-white/10 dark:border-black/80 pt-6 text-sm text-white/50 dark:text-black/50 gap-4">
               <p>© 2024 Shaun Murphy All Rights Reserved</p>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-white">

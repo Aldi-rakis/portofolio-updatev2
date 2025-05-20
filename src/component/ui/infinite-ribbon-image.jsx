@@ -33,14 +33,14 @@ export function InfiniteRibbonImage({
           items.map((item, index) => (
             <div
               key={`${i}-${index}`}
-              className="flex justify-center items-center w-auto gap-2 bg-[#dedcdc1c] transform px-8 py-2 rounded-full shadow-md"
+              className="flex justify-center items-center w-auto gap-2 bg-[#dedcdc1c]  dark:bg-[#fff] transform px-8 py-2 rounded-full shadow-md"
             >
               <img
                 src={item.src}
                 alt={item.label}
                 className="h-8 w-8 object-cover rounded-full"
               />
-              <p className="text-white font-clash font-medium text-base md:text-sm">
+              <p className="text-white dark:text-black font-clash font-medium text-base md:text-sm">
                 {item.label}
               </p>
             </div>

@@ -10,7 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "./Resizable-Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function NavbarDemo() {
   const navItems = [
@@ -28,7 +28,18 @@ export default function NavbarDemo() {
     },
   ];
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+   const [darkMode, setDarkMode] = useState(false);
+
+  // Update class ke <html> saat darkMode berubah
+  useEffect(() => {
+    const html = document.documentElement;
+    if (darkMode) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+  }, [darkMode]);
+   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="relative w-full">
@@ -38,8 +49,8 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="primary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton variant="gradient">Login</NavbarButton>
+            <NavbarButton  onClick={() => setDarkMode(!darkMode)} variant="gradient">  {darkMode ? "Light" : "Dark"} Mode</NavbarButton>
           </div>
         </NavBody>
 
