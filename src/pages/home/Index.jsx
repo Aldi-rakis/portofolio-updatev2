@@ -27,6 +27,7 @@ import { Spotlight } from "../../component/ui/spotlight.jsx";
 import { InfiniteRibbonImage } from "../../component/ui/infinite-ribbon-image.jsx";
 import Card from "../../component/Card.jsx";
 import { delay } from "motion";
+import projectData from "../../data/project.jsx";
 const Index = () => {
   const projects = [
     {
@@ -129,6 +130,8 @@ const cardVariants = {
 
   return (
     <div className="">
+            <div className="pointer-events-none absolute inset-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100" />
+
       <section className=" dark:bg-[#f6f4e5] bg-[#0b0b0d]">
         <div className="absolute z-0 w-full h-[100vh]">
           <img
@@ -441,16 +444,16 @@ const cardVariants = {
       <section id="project" className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-6">
        <div className="z-10 relative justify-center items-center gap-10 px-4 lg:px-45 py- ">
            <h2 className="text-start font-clash text-3xl font-bold text-white dark:text-black">My Projects</h2>
-           <p className="text-start font-dosis text-xl font-bold text-white dark:text-black">- Showcase project -</p>
+           <p className="text-start font-dosis text-xl font-thin text-white dark:text-black">- Showcase project -</p>
         </div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
            
        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
-      {projects.slice(0, 4).map((project, index) => (
+      {projectData.slice(0, 4).map((project, index) => (
         <motion.div
-          key={index}
+         key={project.id}
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"

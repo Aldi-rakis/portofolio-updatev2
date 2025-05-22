@@ -11,7 +11,8 @@ import {
   MobileNavMenu,
 } from "./Resizable-Navbar";
 import { useState, useEffect } from "react";
-
+import { BiMoon, BiSun } from "react-icons/bi";
+import logo from "../assets/icon/logo.webp";
 export default function NavbarDemo() {
   const navItems = [
     {
@@ -27,41 +28,66 @@ export default function NavbarDemo() {
       link: "#contact",
     },
   ];
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
    const [darkMode, setDarkMode] = useState(false);
 
   // Update class ke <html> saat darkMode berubah
   useEffect(() => {
     const html = document.documentElement;
+      // Set flag transisi
+    setIsTransitioning(true);
+    
+
     if (darkMode) {
       html.classList.add("dark");
     } else {
       html.classList.remove("dark");
     }
+  
+    // Reset flag transisi setelah animasi selesai
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 300); // 300ms sesuai dengan durasi CSS transition
+
+    return () => clearTimeout(timer);
   }, [darkMode]);
+  
    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full">
+    <div className="navbar-smooth relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
+          <NavbarButton className={"p-3"} onClick={() => setDarkMode(!darkMode)} variant="gradient">
+              {darkMode ? <BiMoon /> : <BiSun />} 
+            </NavbarButton>
+
             <NavbarButton variant="gradient">Login</NavbarButton>
-            <NavbarButton  onClick={() => setDarkMode(!darkMode)} variant="gradient">  {darkMode ? "Light" : "Dark"} Mode</NavbarButton>
-          </div>
+            
+            </div>
         </NavBody>
 
         {/* Mobile Navigation */}
         <MobileNav >
           <MobileNavHeader>
             <NavbarLogo />
-            <MobileNavToggle
+            <div className="flex flex-row gap-2">
+                <NavbarButton className={"p-3 rounded-full lg:rounded-0"} onClick={() => setDarkMode(!darkMode)} variant="gradient">
+              {darkMode ? <BiMoon /> : <BiSun />} 
+            </NavbarButton>
+               <MobileNavToggle
+              
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             />
+            </div>
+            
+         
           </MobileNavHeader>
 
           <MobileNavMenu
@@ -73,7 +99,7 @@ export default function NavbarDemo() {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
+                className="relative text-white font-clash hover:text-gray-600 dark:black"
               >
                 <span className="block">{item.name}</span>
               </a>

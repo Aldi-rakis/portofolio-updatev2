@@ -9,7 +9,7 @@ import {
 
 import React, { useRef, useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
-
+import logo from "../assets/icon/logo.webp";
 export const Navbar = ({ children, className }) => {
   const ref = useRef(null);
   const { scrollY } = useScroll({
@@ -82,7 +82,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-white dark:text-black hover:text-white dark:hover:text-white"
+          className="relative px-4 py-2 text-white dark:text-white hover:text-white dark:hover:text-white"
           key={`link-${idx}`}
           href={item.link}>
           {hovered === idx && (
@@ -140,11 +140,12 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, scale: 0.7, }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.3 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-black backdrop-blur-xl px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            "absolute inset-x-0 mt-2 rpun top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-xl bg-gradient-to-b from-orange-500 to-red-700 dark:bg-orange-300 backdrop-blur-xl px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] ",
             className
           )}>
           {children}
@@ -157,11 +158,11 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }) => {
 export const MobileNavToggle = ({ isOpen, onClick }) => {
   return isOpen ? (
     // <p onClick={onClick} className="text-black dark:text-white">Close</p>
-     <BiX className="text-white text-2xl dark:text-white" onClick={onClick} />
+    <BiX className="text-white text-2xl mt-2 dark:text-black" onClick={onClick} />
   ) : (
     // <p onClick={onClick} className="text-black dark:text-white">Menu</p> //
-     <BiMenu className="text-white text-2xl dark:text-white" onClick={onClick} />
-    
+    <BiMenu className="text-white text-2xl mt-2 dark:text-black" onClick={onClick} />
+
   );
 };
 
@@ -169,12 +170,21 @@ export const NavbarLogo = () => {
   return (
     <a
       href="#"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black">
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
+      className="relative z-20 mr-4 bg-gradient-to-b from-orange-500 to-red-700 bg-white rounded-full flex items-center p-1 text-sm font-normal text-black">
+      <motion.img
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.2, transition: { duration: 0.3 }, ease: [0, 0.71, 0.2, 1.01] }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          ease: [0, 0.71, 0.2, 1.01],
+        }}
+        src={logo}
         alt="logo"
-        width={30}
-        height={30} />
+        width={40}
+        height={40}
+        className="object-cover rounded-full" />
       {/* <span className="font-medium text-black dark:text-white">Startup</span> */}
     </a>
   );
