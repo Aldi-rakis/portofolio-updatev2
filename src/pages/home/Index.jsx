@@ -157,7 +157,7 @@ const cardVariants = {
           >
             <ModelViewer />
           </div>
-          <div className="w-full lg:w-1/2 px-5 mx-10 lg:mx-20 justify-center items-center text-center lg:text-start  gap-10 flex flex-col">
+          <div className="w-full lg:w-1/2 px-8 mx-10 lg:mx-20 justify-center items-center text-start  gap-10 flex flex-col">
             <div className="gap-5 lg:gap-10 flex flex-col">
               <motion.h1
                 initial={{ opacity: 0, x: -50 }}
