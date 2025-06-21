@@ -15,9 +15,7 @@ const RouteIndex = () => {
 
              
 
-            
-
-
+        
              {/* <Route path="*" element={<NotFound />} /> */}
 
 
