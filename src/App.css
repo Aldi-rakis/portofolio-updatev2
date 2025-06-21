@@ -1,6 +1,24 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari and Opera */
+}
 
 @font-face {
     font-family: Beauty;
@@ -63,7 +81,30 @@
 
 }
 
+/* .progress-bar {
+  position: fixed;
+  top: 10;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: 0%;
+} */
 
 
 
 
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  /* left: 0; */
+  right: 0;
+  bottom: 0;
+  width: 8px; /* Lebar vertikal */
+  background: linear-gradient(to bottom, #e7380c, #f1700d);
+  transform: scaleY(0);
+  transform-origin: top; /* Mulai dari atas */
+  z-index: 9999;
+}
