@@ -16,43 +16,54 @@ import logo from "../assets/icon/logo.webp";
 export default function NavbarDemo() {
   const navItems = [
     {
-      name: "Features",
-      link: "#features",
+
+      name: "Home",
+      link: "/",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "About",
+      link: "/About",
     },
     {
-      name: "Contact",
-      link: "#contact",
+      name: "projects",
+      link: "/projects",
     },
   ];
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-   const [darkMode, setDarkMode] = useState(false);
+const [darkMode, setDarkMode] = useState(() => {
+    // Inisialisasi darkMode dari localStorage, default ke false jika tidak ditemukan
+    if (typeof window !== 'undefined') { // Periksa apakah window didefinisikan (sisi klien)
+      const savedMode = localStorage.getItem("darkMode");
+      return savedMode === "true" ? true : false;
+    }
+    return false; // Default ke false selama server-side rendering
+  });
 
-  // Update class ke <html> saat darkMode berubah
+  // Perbarui kelas ke <html> dan simpan ke localStorage saat darkMode berubah
   useEffect(() => {
     const html = document.documentElement;
-      // Set flag transisi
     setIsTransitioning(true);
-    
 
     if (darkMode) {
       html.classList.add("dark");
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("darkMode", "true");
+      }
     } else {
       html.classList.remove("dark");
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("darkMode", "false");
+      }
     }
-  
-    // Reset flag transisi setelah animasi selesai
+
     const timer = setTimeout(() => {
       setIsTransitioning(false);
-    }, 300); // 300ms sesuai dengan durasi CSS transition
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [darkMode]);
-  
+
    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (

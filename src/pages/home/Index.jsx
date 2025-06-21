@@ -153,7 +153,8 @@ const cardVariants = {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className=" absolute -bottom-45  z-0 w-full h-full bg-"
+
+            className=" absolute -bottom-45 hidden md:block  z-0 w-full h-full bg-"
           >
             <ModelViewer />
           </div>

@@ -4,7 +4,8 @@ import project2 from "../assets/img/project/project-2.png";
 const projects = [
     {
       id: 1,
-      title: "AORA",
+
+      title: "AORA1",
       role: "Fullstack Developer",
       year: "2023",
       imageSrc: project1,
@@ -20,10 +21,13 @@ const projects = [
       imageSrc: project2,
       captionText: "Kendrick Lamar - GNX",
       link: "https://devrajchatribin.com/projects/aora",
+
+      category: "Design",
+
     },
     {
       id: 3,
-      title: "AORA",
+      title: "AORA3",
       role: "Fullstack Developer",
       year: "2023",
       imageSrc:
@@ -34,7 +38,7 @@ const projects = [
     },
     {
       id: 4,
-      title: "AORA",
+      title: "AORA4",
       role: "Fullstack Developer",
       year: "2023",
       imageSrc:
