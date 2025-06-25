@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* @import 'path-to/_variables.scss';
+@import 'path-to/_keyframes-animations.scss'; */
+
+
+
 html, body {
   scrollbar-width: none;
   -ms-overflow-style: none;
