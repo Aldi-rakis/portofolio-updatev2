@@ -1,94 +1,105 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import TiltedCard from "../../component/ui/title3d-card.jsx";
 import projectData from "../../data/project.jsx";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProjects } from '../../redux/projectslice';
 const Index = () => {
   const categories = ["All", "Development", "Design"];
   const [activeCategory, setActiveCategory] = useState("All");
 
   // Dummy data project (harus diisi sesuai kebutuhan)
-  const projects = [
-    {
-      id: 1,
-      title: "AORA",
-      category: "Development",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "Fullstack Developer",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    },
-     {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    },
-     {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    }, {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    }, {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    }, {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    }, {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    }, {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    }, {
-      id: 2,
-      title: "Design Sample",
-      category: "Design",
-      imageSrc: "https://via.placeholder.com/400x200",
-      captionText: "UI/UX Design",
-      link: "#",
-    },
-  ];
+  // const projects = [
+  //   {
+  //     id: 1,
+  //     title: "AORA",
+  //     category: "Development",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "Fullstack Developer",
+  //     link: "#",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   },
+  //    {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   },
+  //    {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   }, {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   }, {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   }, {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   }, {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   }, {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   }, {
+  //     id: 2,
+  //     title: "Design Sample",
+  //     category: "Design",
+  //     imageSrc: "https://via.placeholder.com/400x200",
+  //     captionText: "UI/UX Design",
+  //     link: "#",
+  //   },
+  // ];
+
+  const dispatch = useDispatch();
+  const { list: projects, status } = useSelector((state) => state.projects);
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchProjects());
+    }
+  }, [status, dispatch]);
+
 
   const filteredProjects =
     activeCategory === "All"
-      ? projectData
-      : projectData.filter((project) => project.category === activeCategory);
+      ? projects
+      : projects.filter((projects) => projects.category === activeCategory);
 
       const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -137,21 +148,21 @@ const Index = () => {
        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10  py-10 text-center">
       {filteredProjects.map((project, index) => (
         <motion.div
-          key={project.id || index}
+          key={project.projectID || index}
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: index * 0.3, duration: 0.6, ease: "easeOut" }}
           className="cursor-pointer rounded-2xl"
-          onClick={() => window.open(`/projects/${project.id}`, "_blank")}
+          onClick={() => window.open(`/projects/${project.projectID}`, "_blank")}
         >
           {/* Card content */}
           <div className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
             <TiltedCard
-              imageSrc={project.imageSrc}
+              imageSrc={project.image}
               altText={project.altText}
-              captionText={project.captionText}
+              captionText={project.ProjectName}
               rotateAmplitude={18}
               scaleOnHover={1.3}
               rotateOnHover={true}
@@ -163,10 +174,10 @@ const Index = () => {
 
           {/* Text info */}
           <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
-            <p>{project.title}</p>
+            <p>{project.ProjectName}</p>
             <div className="flex justify-between text-sm font-normal mt-1">
-              <p>{project.role}</p>
-              <p>{project.year}</p>
+             <p className="text-sm">{project.role.join(', ')}</p>
+              <p className="text-sm">{project.date}</p>
             </div>
           </div>
         </motion.div>

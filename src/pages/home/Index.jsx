@@ -504,8 +504,10 @@ const cardVariants = {
     </div>
 
         <div className="flex justify-center items-center">
-          <button className="text-white dark:text-black text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:bg-amber-500 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
-            Show more
+          <button 
+            onClick={() => navigate('/projects')}
+            className="text-white dark:text-black text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:bg-amber-500 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
+           Show More
           </button>
         </div>
       </section>
@@ -599,15 +601,15 @@ const cardVariants = {
             items={[
               {
                 src: "https://devrajchatribin.com/skills/React.js.svg",
-                label: "Brand A",
+                label: "react Js",
               },
               {
                 src: "https://devrajchatribin.com/skills/Node.js.svg",
-                label: "Brand B",
+                label: "Node Js",
               },
               {
                 src: "https://devrajchatribin.com/skills/Next.js.svg",
-                label: "Brand C",
+                label: "Next Js",
               },
             ]}
             repeat={6}
