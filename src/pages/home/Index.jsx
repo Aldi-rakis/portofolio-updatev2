@@ -28,8 +28,11 @@ import { InfiniteRibbonImage } from "../../component/ui/infinite-ribbon-image.js
 import Card from "../../component/Card.jsx";
 import { delay } from "motion";
 import projectData from "../../data/project.jsx";
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProjects } from '../../redux/projectslice.jsx';
 const Index = () => {
-  const projects = [
+  const projectss = [
     {
       title: "AORA",
       role: "Fullstack Developer",
@@ -70,6 +73,9 @@ const Index = () => {
   ];
 
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const { list: projects, status, error } = useSelector((state) => state.projects);
 
   useEffect(() => {
     // Simulasi loading selama 2 detik, kamu bisa ganti sesuai event model ready
@@ -77,8 +83,12 @@ const Index = () => {
       setIsLoading(false);
     }, 1000);
 
+    if (status === 'idle') {
+      dispatch(fetchProjects());
+    }
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [status, dispatch]);
 
   const tabs = [
     {
@@ -452,9 +462,9 @@ const cardVariants = {
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
            
        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
-      {projectData.slice(0, 4).map((project, index) => (
+      {projects.slice(0, 4).map((project, index) => (
         <motion.div
-         key={project.id}
+         key={project.projectID}
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
@@ -462,13 +472,13 @@ const cardVariants = {
           transition={{ delay: index * 0.3 }}  // delay manual per card
           className="cursor-pointer rounded-2xl"
        
-          onClick={() => window.open(project.link, "_blank")}
+          onClick={() => window.open('projects/' + project.projectID, "_blank")}
         >
           <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
             <TiltedCard
-              imageSrc={project.imageSrc}
+              imageSrc={project.image[0]}
               altText={project.altText}
-              captionText={project.captionText}
+              captionText={project.ProjectName}
               rotateAmplitude={18}
               scaleOnHover={1.3}
               rotateOnHover={true}
@@ -478,10 +488,10 @@ const cardVariants = {
             />
           </div>
           <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
-            <p>{project.title}</p>
+            <p>{project.ProjectName}</p>
             <div className="flex justify-between">
-              <p className="text-sm">{project.role}</p>
-              <p className="text-sm">{project.year}</p>
+              <p className="text-sm">{project.role.join(', ')}</p>
+              <p className="text-sm">{project.date}</p>
             </div>
           </div>
         </motion.div>

@@ -9,17 +9,17 @@ const projects = [
       role: "Fullstack Developer",
       year: "2023",
       imageSrc: project1,
-      altText: "Asep",
-      captionText: "Fullstack Developer",
+      // altText: "Asep",
+      captionText: "AORA2",
       link: "https://devrajchatribin.com/projects/aora",
     },
     {
       id: 2,
-      title: "AORA",
+      title: "AORA2",
       role: "Fullstack Developer",
       year: "2023",
       imageSrc: project2,
-      captionText: "Kendrick Lamar - GNX",
+      captionText: "AORA2",
       link: "https://devrajchatribin.com/projects/aora",
 
       category: "Design",
@@ -33,7 +33,7 @@ const projects = [
       imageSrc:
         "https://devrajchatribin.com/_next/image?url=%2Fprojects%2Faora.webp&w=1200&q=100",
       altText: "Kendrick Lamar - GNX Album Cover",
-      captionText: "Kendrick Lamar - GNX",
+      captionText: "AORA2",
       link: "https://devrajchatribin.com/projects/aora",
     },
     {

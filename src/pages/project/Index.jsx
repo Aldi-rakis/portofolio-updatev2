@@ -144,7 +144,7 @@ const Index = () => {
           viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: index * 0.3, duration: 0.6, ease: "easeOut" }}
           className="cursor-pointer rounded-2xl"
-          onClick={() => window.open(project.link, "_blank")}
+          onClick={() => window.open(`/projects/${project.id}`, "_blank")}
         >
           {/* Card content */}
           <div className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
