@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function CreateProject() {
   const editorRef = useRef(null);
   const [projectName, setProjectName] = useState('');
+  const [date, setDate] = useState('');
   const [stack, setStack] = useState('');
   const [role, setRole] = useState('');
   const [images, setImages] = useState([]);
@@ -46,39 +47,50 @@ export default function CreateProject() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-start p-10">
-      <div className="bg-blue-50 p-6 rounded shadow w-full mt-20 max-w-1xl px-40 space-y-4">
+      <div className="bg-blue-50 p-6 rounded shadow w-full mt-20 max-w-1xl lg:px-40 space-y-4">
         <h1 className="text-xl font-bold">Create Project</h1>
 
-        <input
-          type="text"
-          placeholder="Project Name"
-          value={projectName}
-          onChange={(e) => setProjectName(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <input
+    type="text"
+    placeholder="Project Name"
+    value={projectName}
+    onChange={(e) => setProjectName(e.target.value)}
+    className="w-full border px-3 py-2 rounded"
+  />
 
-        <input
-          type="text"
-          placeholder='Stack (pisahkan dengan koma, contoh: React, Node.js)'
-          value={stack}
-          onChange={(e) => setStack(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-        />
+    <input
+    type="text"
+    placeholder="Tanggal project"
+    value={date}
+    onChange={(e) => setDate(e.target.value)}
+    className="w-full border px-3 py-2 rounded"
+  />
 
-        <input
-          type="text"
-          placeholder='Role (pisahkan dengan koma, contoh: frontend, backend)'
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-        />
+  <input
+    type="text"
+    placeholder="Stack (pisahkan dengan koma, contoh: React, Node.js)"
+    value={stack}
+    onChange={(e) => setStack(e.target.value)}
+    className="w-full border px-3 py-2 rounded"
+  />
 
-        <input
-          type="file"
-          multiple
-          onChange={(e) => setImages([...e.target.files])}
-          className="w-full border px-3 py-2 rounded"
-        />
+  <input
+    type="text"
+    placeholder="Role (pisahkan dengan koma, contoh: frontend, backend)"
+    value={role}
+    onChange={(e) => setRole(e.target.value)}
+    className="w-full border px-3 py-2 rounded"
+  />
+
+  <input
+    type="file"
+    multiple
+    onChange={(e) => setImages([...e.target.files])}
+    className="w-full border px-3 py-2 rounded"
+  />
+</div>
+
 
        <Editor
   apiKey='m1vzrisqzhcslkwnqqe1osswwhef8tqqxz7i8y0mdm1tv8jh'

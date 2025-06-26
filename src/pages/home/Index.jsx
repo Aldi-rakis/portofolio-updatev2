@@ -31,6 +31,8 @@ import projectData from "../../data/project.jsx";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from '../../redux/projectslice.jsx';
+import { useNavigate } from 'react-router-dom';
+
 const Index = () => {
   const projectss = [
     {
@@ -71,6 +73,8 @@ const Index = () => {
       link: "https://devrajchatribin.com/projects/aora",
     },
   ];
+
+  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -472,7 +476,8 @@ const cardVariants = {
           transition={{ delay: index * 0.3 }}  // delay manual per card
           className="cursor-pointer rounded-2xl"
        
-          onClick={() => window.open('projects/' + project.projectID, "_blank")}
+          onClick={() => navigate(`/projects/${project.projectID}`)}
+
         >
           <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
             <TiltedCard

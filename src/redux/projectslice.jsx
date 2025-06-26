@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Fetch semua project (sekali saja)
 export const fetchProjects = createAsyncThunk('projects/fetchAll', async () => {
-  const res = await axios.get('http://localhost:3200/api/projects');
+  const res = await axios.get('http://31.97.50.232:3200/api/projects');
   return res.data.data;
 });
 

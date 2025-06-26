@@ -2,29 +2,35 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './projectDetail.module.scss';
-
+import { useSelector } from 'react-redux';
 export default function ProjectDetail() {
   const { id } = useParams(); // ambil ID dari URL
-  const [project, setProject] = useState(null);
+//   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        const res = await axios.get(`http://localhost:3200/api/projects/${id}`);
-        setProject(res.data.data);
-        console.log(res);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching project:', err);
-        setLoading(false);
-      }
-    };
+    const projects = useSelector((state) => state.projects.list);
+    console.log(projects); // ambil list project dari Redux
 
-    fetchProject();
-  }, [id]);
+  // cari project berdasarkan ID (pastikan tipe datanya sama, string/number)
+  const project = projects.find(p => String(p.projectID) === id);
+ 
+//   useEffect(() => {
+//     const fetchProject = async () => {
+//       try {
+//         const res = await axios.get(`http://31.97.50.232:3200/api/projects/${id}`);
+//         setProject(res.data.data);
+//         console.log(res);
+//         setLoading(false);
+//       } catch (err) {
+//         console.error('Error fetching project:', err);
+//         setLoading(false);
+//       }
+//     };
 
-  if (loading) return <div className="p-10 text-center">Loading...</div>;
+//     fetchProject();
+//   }, [id]);
+
+//   if (loading) return <div className="p-10 text-center">Loading...</div>;
   if (!project) return <div className="p-10 text-center text-red-500">Project not found.</div>;
 
   return (
@@ -47,7 +53,7 @@ export default function ProjectDetail() {
               key={idx}
               src={img}
               alt={`Project image ${idx}`}
-              className="w-full h-full object-cover rounded border"
+              className="w-full h-full object-cover rounded "
             />
           ))}
         </div>
