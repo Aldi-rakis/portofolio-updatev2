@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './projectDetail.scss';
+import styles from './projectDetail.module.scss';
 
 export default function ProjectDetail() {
   const { id } = useParams(); // ambil ID dari URL
@@ -28,15 +28,15 @@ export default function ProjectDetail() {
   if (!project) return <div className="p-10 text-center text-red-500">Project not found.</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-6">
-      <div className="max-w-4xl mx-auto  rounded shadow p-8 space-y-6">
+    <div className={`${styles.wrapper} min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-6`}>
+      <div className="max-w-4xl mx-auto rounded shadow p-8 space-y-6">
         <h1 className="text-3xl font-bold">{project.ProjectName}</h1>
 
   <div>
           <h2 className="text-lg font-semibold">Stack:</h2>
           <div className="flex gap-4 ml-6">
             {project.stack.map((item, idx) => (
-              <p className='my-2 bg-amber-50 rounded-full px-3 py-1 max-w-max' key={idx}>{item}</p>
+              <p className='my-2 bg-amber-50 rounded-full px-6 py-1 max-w-max' key={idx}>{item}</p>
             ))}
           </div>
         </div>
