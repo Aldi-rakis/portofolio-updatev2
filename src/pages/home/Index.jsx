@@ -33,6 +33,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from '../../redux/projectslice.jsx';
 import { useNavigate } from 'react-router-dom';
 
+import { BiLinkExternal } from "react-icons/bi";
 const Index = () => {
   const projectss = [
     {
@@ -205,6 +206,10 @@ const cardVariants = {
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('https://www.linkedin.com/in/aldirakis/', '_blank');
+                }}
                 className="relative px-10 py-3 font-clash font-semibold text-white bg-gradient-to-b from-orange-500 to-red-700 rounded-lg shadow-lg transition duration-300 ease-in-out hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400
                              before:absolute before:inset-0 before:rounded-lg   hover:scale-105 before:opacity-10 before:animate-pulse"
               >
@@ -221,7 +226,7 @@ const cardVariants = {
                 />
               </motion.button>
 
-               <motion.button
+               {/* <motion.button
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
@@ -239,7 +244,7 @@ const cardVariants = {
                   src={tasicon}
                   alt="sss"
                 />
-              </motion.button>
+              </motion.button> */}
             </div>
           </div>
 
@@ -476,10 +481,13 @@ const cardVariants = {
           transition={{ delay: index * 0.3 }}  // delay manual per card
           className="cursor-pointer rounded-2xl"
        
-          onClick={() => navigate(`/projects/${project.projectID}`)}
+         
 
         >
-          <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
+          <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
+          
+          //  onClick={() => navigate(`/projects/${project.projectID}`)}
+           >
             <TiltedCard
               imageSrc={project.image[0]}
               altText={project.altText}
@@ -491,9 +499,18 @@ const cardVariants = {
               showTooltip={true}
               displayOverlayContent={true}
             />
+            
           </div>
           <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
-            <p>{project.ProjectName}</p>
+        
+           <div className="flex justify-between mb-2">
+           <p className="hover:underline">{project.ProjectName}</p>
+           <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500">
+             <BiLinkExternal className="demo ml-2 inline-block" />
+           </a>
+           </div>
+            
+
             <div className="flex justify-between">
               <p className="text-sm">{project.role.join(', ')}</p>
               <p className="text-sm">{project.date}</p>

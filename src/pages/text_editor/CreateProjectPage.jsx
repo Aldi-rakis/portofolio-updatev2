@@ -8,6 +8,7 @@ export default function CreateProject() {
   const [date, setDate] = useState('');
   const [stack, setStack] = useState('');
   const [role, setRole] = useState('');
+  const [link, setLink] = useState('');
   const [images, setImages] = useState([]);
 
   const handleSubmit = async () => {
@@ -18,6 +19,7 @@ export default function CreateProject() {
     const formData = new FormData();
     formData.append('ProjectName', projectName);
     formData.append('description', description);
+    formData.append('link', link);
     formData.append('stack', JSON.stringify(stack.split(',').map(s => s.trim())));
     formData.append('role', JSON.stringify(role.split(',').map(r => r.trim())));
 
@@ -37,6 +39,7 @@ export default function CreateProject() {
       setProjectName('');
       setStack('');
       setRole('');
+      setLink('');
       setImages([]);
       // refresh the page
       window.location.reload();
@@ -66,6 +69,15 @@ export default function CreateProject() {
     onChange={(e) => setDate(e.target.value)}
     className="w-full border px-3 py-2 rounded"
   />
+
+   <input
+    type="text"
+    placeholder="Link Project"
+    value={link}
+    onChange={(e) => setLink(e.target.value)}
+    className="w-full border px-3 py-2 rounded"
+  />
+
 
   <input
     type="text"

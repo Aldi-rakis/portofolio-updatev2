@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { form } from 'framer-motion/client';
 
 export default function UpdateProject() {
   const { id } = useParams(); // Ambil project ID dari URL
@@ -12,16 +13,19 @@ export default function UpdateProject() {
   const [images, setImages] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
   const [description, setDescription] = useState('');
+  const [link, setLink] = useState('');
 
   useEffect(() => {
     const fetchProject = async () => {
       try {
         const res = await axios.get(`https://api-portov2.rakis.my.id/api/projects/${id}`);
         const data = res.data.data;
+        console.log(data);
 
         setProjectName(data.ProjectName);
         setStack(data.stack.join(', '));
         setRole(data.role.join(', '));
+        setLink(data.link);
         setDescription(data.description);
         setExistingImages(data.image || []);
       } catch (err) {
@@ -38,6 +42,7 @@ export default function UpdateProject() {
     const formData = new FormData();
     formData.append('ProjectName', projectName);
     formData.append('description', editorContent);
+    formData.append('link', link);
     formData.append('stack', JSON.stringify(stack.split(',').map(s => s.trim())));
     formData.append('role', JSON.stringify(role.split(',').map(r => r.trim())));
 
@@ -69,6 +74,14 @@ export default function UpdateProject() {
           onChange={(e) => setProjectName(e.target.value)}
           className="w-full border px-3 py-2 rounded"
           placeholder="Project Name"
+        />
+
+           <input
+          type="text"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          className="w-full border px-3 py-2 rounded"
+          placeholder="Masukin link porject anda"
         />
 
         <input
