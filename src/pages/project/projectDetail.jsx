@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './projectDetail.module.scss';
-import { useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProjects } from '../../redux/projectslice';
+import { useParams } from 'react-router-dom';
 export default function ProjectDetail() {
-  const { id } = useParams(); // ambil ID dari URL
-//   const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { list: projects, status } = useSelector((state) => state.projects);
 
-    const projects = useSelector((state) => state.projects.list);
-    console.log(projects); // ambil list project dari Redux
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchProjects());
+    }
+  }, [status, dispatch]);
 
-  // cari project berdasarkan ID (pastikan tipe datanya sama, string/number)
   const project = projects.find(p => String(p.projectID) === id);
- 
 //   useEffect(() => {
 //     const fetchProject = async () => {
 //       try {
