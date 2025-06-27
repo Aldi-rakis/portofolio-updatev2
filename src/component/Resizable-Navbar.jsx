@@ -172,7 +172,7 @@ export const MobileNavToggle = ({ isOpen, onClick }) => {
 export const NavbarLogo = () => {
   return (
     <a
-      href="#"
+      href="/"
       className="relative z-20 mr-4 bg-gradient-to-b from-orange-500 to-red-700 bg-white rounded-full flex items-center p-1 text-sm font-normal text-black">
       <motion.img
       onClick={() => navigate("/")}

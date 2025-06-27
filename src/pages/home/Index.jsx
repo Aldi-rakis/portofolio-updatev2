@@ -747,7 +747,7 @@ const Index = () => {
 
             {/* Copyright & Social */}
             <div className=" w-full flex flex-col lg:flex-row justify-between items-center border-t-4 border-white/10 dark:border-black/80 pt-6 text-sm text-white/50 dark:text-black/50 gap-4">
-              <p>© 2024 Shaun Murphy All Rights Reserved</p>
+              <p>© 2025 Aldhi Raqiswandri All Rights Reserved</p>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-white">
                   a
