@@ -175,6 +175,7 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 bg-gradient-to-b from-orange-500 to-red-700 bg-white rounded-full flex items-center p-1 text-sm font-normal text-black">
       <motion.img
+      onClick={() => navigate("/")}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.2, transition: { duration: 0.3 }, ease: [0, 0.71, 0.2, 1.01] }}

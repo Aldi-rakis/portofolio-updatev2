@@ -78,7 +78,7 @@ const [darkMode, setDarkMode] = useState(() => {
               {darkMode ? <BiMoon /> : <BiSun />} 
             </NavbarButton>
 
-            <NavbarButton variant="gradient">Login</NavbarButton>
+            {/* <NavbarButton variant="gradient">Login</NavbarButton> */}
             
             </div>
         </NavBody>
@@ -115,7 +115,7 @@ const [darkMode, setDarkMode] = useState(() => {
                 <span className="block">{item.name}</span>
               </a>
             ))}
-            <div className="flex w-full flex-col gap-4">
+            {/* <div className="flex w-full flex-col gap-4">
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
@@ -130,7 +130,7 @@ const [darkMode, setDarkMode] = useState(() => {
               >
                 Book a call
               </NavbarButton>
-            </div>
+            </div> */}
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
