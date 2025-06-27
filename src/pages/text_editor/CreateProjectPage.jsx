@@ -19,6 +19,7 @@ export default function CreateProject() {
     const formData = new FormData();
     formData.append('ProjectName', projectName);
     formData.append('description', description);
+    formData.append('date', date);
     formData.append('link', link);
     formData.append('stack', JSON.stringify(stack.split(',').map(s => s.trim())));
     formData.append('role', JSON.stringify(role.split(',').map(r => r.trim())));

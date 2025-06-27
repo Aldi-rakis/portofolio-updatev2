@@ -33,6 +33,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from '../../redux/projectslice.jsx';
 import { useNavigate } from 'react-router-dom';
 
+import StackIcons from '../../assets/stack/Index.jsx';
+
 import { BiLinkExternal } from "react-icons/bi";
 const Index = () => {
   const projectss = [
@@ -129,23 +131,23 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState(null);
   const [lastActiveTab, setLastActiveTab] = useState(0);
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.7,
-      ease: [0.4, 0, 0.2, 1],
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.4, 0, 0.2, 1],
+      },
     },
-  },
-};
+  };
 
 
   return (
     <div className="">
-            <div className="pointer-events-none absolute inset-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100" />
 
       <section className=" dark:bg-[#f6f4e5] bg-[#0b0b0d]">
         <div className="absolute z-0 w-full h-[100vh]">
@@ -226,7 +228,7 @@ const cardVariants = {
                 />
               </motion.button>
 
-               {/* <motion.button
+              {/* <motion.button
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
@@ -418,7 +420,7 @@ const cardVariants = {
           <div className="max-w-6xl mx-auto px-4 flex flex-row md:flex-row justify-around items-center gap-10 md:gap-0">
             {[
               { value: "2+", text: "Years Experience" },
-              { value: "10+", text: "Overall Global Customers" },
+              { value: "10+", text: "Overall Customers" },
               { value: "15+", text: "Projects Implemented" },
             ].map((item, index) => {
               // Tentukan arah animasi berdasarkan index
@@ -462,69 +464,69 @@ const cardVariants = {
       </section>
 
       <section id="project" className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-6">
-       <div className="z-10 relative justify-center items-center gap-10 px-4 lg:px-45 py- ">
-           <h2 className="text-start font-clash text-3xl font-bold text-white dark:text-black">My Projects</h2>
-           <p className="text-start font-dosis text-xl font-thin text-white dark:text-black">- Showcase project -</p>
+        <div className="z-10 relative justify-center items-center gap-10 px-4 lg:px-45 py- ">
+          <h2 className="text-start font-clash text-3xl font-bold text-white dark:text-black">My Projects</h2>
+          <p className="text-start font-dosis text-xl font-thin text-white dark:text-black">- Showcase project -</p>
         </div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FFB000] h-[200px] w-[1000px] opacity-15 right-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
-           
-       <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
-      {projects.slice(0, 4).map((project, index) => (
-        <motion.div
-         key={project.projectID}
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ delay: index * 0.3 }}  // delay manual per card
-          className="cursor-pointer rounded-2xl"
-       
-         
 
-        >
-          <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
-          
-          //  onClick={() => navigate(`/projects/${project.projectID}`)}
-           >
-            <TiltedCard
-              imageSrc={project.image[0]}
-              altText={project.altText}
-              captionText={project.ProjectName}
-              rotateAmplitude={18}
-              scaleOnHover={1.3}
-              rotateOnHover={true}
-              showMobileWarning={false}
-              showTooltip={true}
-              displayOverlayContent={true}
-            />
-            
-          </div>
-          <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
-        
-           <div className="flex justify-between mb-2">
-           <p className="hover:underline">{project.ProjectName}</p>
-           <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500">
-             <BiLinkExternal className="demo ml-2 inline-block" />
-           </a>
-           </div>
-            
+        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
+          {projects.slice(0, 4).map((project, index) => (
+            <motion.div
+              key={project.projectID}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ delay: index * 0.3 }}  // delay manual per card
+              className="cursor-pointer rounded-2xl"
 
-            <div className="flex justify-between">
-              <p className="text-sm">{project.role.join(', ')}</p>
-              <p className="text-sm">{project.date}</p>
-            </div>
-          </div>
-        </motion.div>
-      ))}
-    </div>
+
+
+            >
+              <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
+
+              //  onClick={() => navigate(`/projects/${project.projectID}`)}
+              >
+                <TiltedCard
+                  imageSrc={project.image[0]}
+                  altText={project.altText}
+                  captionText={project.ProjectName}
+                  rotateAmplitude={18}
+                  scaleOnHover={1.3}
+                  rotateOnHover={true}
+                  showMobileWarning={false}
+                  showTooltip={true}
+                  displayOverlayContent={true}
+                />
+
+              </div>
+              <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
+
+                <div className="flex justify-between mb-2">
+                  <p className="hover:underline">{project.ProjectName}</p>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500">
+                    <BiLinkExternal className="demo ml-2 inline-block" />
+                  </a>
+                </div>
+
+
+                <div className="flex justify-between">
+                  <p className="text-sm">{project.role.join(', ')}</p>
+                  <p className="text-sm">{project.date}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
         <div className="flex justify-center items-center">
-          <button 
+          <button
             onClick={() => navigate('/projects')}
             className="text-white dark:text-black text-lg font-semibold border-2 border-amber-500 px-6 py-2 rounded-full shadow-lg hover:bg-amber-500 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105">
-           Show More
+            Show More
           </button>
         </div>
       </section>
@@ -550,9 +552,8 @@ const cardVariants = {
                       setLastActiveTab(index); // simpan tab terakhir yang aktif
                     }
                   }}
-                  className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${
-                    activeTab === index ? "bg-gray-950 dark:bg-[#f4f3e5]" : ""
-                  }`}
+                  className={`p-4 rounded-lg border border-gray-700 cursor-pointer transition ease-in-out duration-300 ${activeTab === index ? "bg-gray-950 dark:bg-[#f4f3e5]" : ""
+                    }`}
                   whileTap={{ scale: 0.98 }}
                 >
                   <h2 className="text-lg font-clash font-semibold flex items-center gap-2">
@@ -616,18 +617,17 @@ const cardVariants = {
         <div className="relative lg:px-20">
           <InfiniteRibbonImage
             items={[
-              {
-                src: "https://devrajchatribin.com/skills/React.js.svg",
-                label: "react Js",
-              },
-              {
-                src: "https://devrajchatribin.com/skills/Node.js.svg",
-                label: "Node Js",
-              },
-              {
-                src: "https://devrajchatribin.com/skills/Next.js.svg",
-                label: "Next Js",
-              },
+              { src: StackIcons.ReactJS, label: 'React JS' },
+              { src: StackIcons.NodeJS, label: 'Node JS' },
+              { src: StackIcons.NextJS, label: 'Next JS' },
+              { src: StackIcons.JavaScript, label: 'JavaScript' },
+              { src: StackIcons.TailwindCSS, label: 'Tailwind CSS' },
+              { src: StackIcons.MongoDB, label: 'MongoDB' },
+              { src: StackIcons.PostgreSQL, label: 'PostgreSQL' },
+              { src: StackIcons.MySQL, label: 'MySQL' },
+              { src: StackIcons.Redux, label: 'Redux' },
+              { src: StackIcons.GIT, label: 'Git' },
+              { src: StackIcons.FramerMotion, label: 'Framer Motion' },
             ]}
             repeat={6}
             duration={20}
@@ -655,37 +655,37 @@ const cardVariants = {
             fill="white"
           />
           <motion.div
-      className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.3 }}
-    >
-      <motion.h1
-        className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-neutral-800 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        Get in <span className="text-[#ff5d20]"> touch </span> <br /> 
-        <motion.span
-          className="text-3xl lg:text-5xl"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.02, delay: 0.5 }}
-        >
-        lets build something great together.
-        </motion.span>
-      </motion.h1>
+            className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <motion.h1
+              className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-neutral-800 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Get in <span className="text-[#ff5d20]"> touch </span> <br />
+              <motion.span
+                className="text-3xl lg:text-5xl"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.02, delay: 0.5 }}
+              >
+                lets build something great together.
+              </motion.span>
+            </motion.h1>
 
-      <motion.p
-        className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300 dark:text-black md:text-lg"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-      >
-        I'm open to new projects, collaborations, or just a friendly chat. Feel free to reach out anytime!. Whether you have questions or want to discuss an idea, I’m here to help.
-      </motion.p>
-    </motion.div>
+            <motion.p
+              className="mx-auto mt-4 max-w-lg text-center text-base font-normal text-neutral-300 dark:text-black md:text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              I'm open to new projects, collaborations, or just a friendly chat. Feel free to reach out anytime!. Whether you have questions or want to discuss an idea, I’m here to help.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 

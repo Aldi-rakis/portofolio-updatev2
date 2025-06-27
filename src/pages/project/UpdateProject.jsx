@@ -8,6 +8,7 @@ export default function UpdateProject() {
   const { id } = useParams(); // Ambil project ID dari URL
   const editorRef = useRef(null);
   const [projectName, setProjectName] = useState('');
+  const [date, setDate] = useState('');
   const [stack, setStack] = useState('');
   const [role, setRole] = useState('');
   const [images, setImages] = useState([]);
@@ -23,6 +24,7 @@ export default function UpdateProject() {
         console.log(data);
 
         setProjectName(data.ProjectName);
+        setDate(data.date);
         setStack(data.stack.join(', '));
         setRole(data.role.join(', '));
         setLink(data.link);
@@ -43,6 +45,7 @@ export default function UpdateProject() {
     formData.append('ProjectName', projectName);
     formData.append('description', editorContent);
     formData.append('link', link);
+    formData.append('date', date);
     formData.append('stack', JSON.stringify(stack.split(',').map(s => s.trim())));
     formData.append('role', JSON.stringify(role.split(',').map(r => r.trim())));
 
@@ -65,61 +68,72 @@ export default function UpdateProject() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-start p-10">
-      <div className="bg-white p-6 rounded shadow w-full mt-20 max-w-2xl space-y-4">
+      <div className="bg-white p-6 rounded shadow w-full mt-20 lg:px-40 space-y-4">
         <h1 className="text-xl font-bold">Update Project</h1>
 
-        <input
-          type="text"
-          value={projectName}
-          onChange={(e) => setProjectName(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          placeholder="Project Name"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="text"
+            value={projectName}
+            onChange={(e) => setProjectName(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            placeholder="Project Name"
+          />
 
-           <input
-          type="text"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          placeholder="Masukin link porject anda"
-        />
+          <input
+            type="text"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            placeholder="Tanggal project"
+          />
 
-        <input
-          type="text"
-          value={stack}
-          onChange={(e) => setStack(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          placeholder="Stack (pisahkan dengan koma)"
-        />
+          <input
+            type="text"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            placeholder="Masukin link porject anda"
+          />
 
-        <input
-          type="text"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          placeholder="Role (pisahkan dengan koma)"
-        />
+          <input
+            type="text"
+            value={stack}
+            onChange={(e) => setStack(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            placeholder="Stack (pisahkan dengan koma)"
+          />
 
-        <div>
-          <label className="block font-medium mb-1">Gambar saat ini:</label>
-          <div className="flex flex-wrap gap-2">
-            {existingImages.map((img, idx) => (
-              <img
-                key={idx}
-                src={img}
-                alt={`preview-${idx}`}
-                className="w-20 h-20 object-cover border rounded"
-              />
-            ))}
+          <input
+            type="text"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            placeholder="Role (pisahkan dengan koma)"
+          />
+
+          <div>
+            <label className="block font-medium mb-1">Gambar saat ini:</label>
+            <div className="flex flex-wrap gap-2">
+              {existingImages.map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`preview-${idx}`}
+                  className="w-20 h-20 object-cover border rounded"
+                />
+              ))}
+            </div>
           </div>
         </div>
-
         <input
           type="file"
           multiple
           onChange={(e) => setImages([...e.target.files])}
           className="w-full border px-3 py-2 rounded"
         />
+
+
 
         <Editor
           apiKey="m1vzrisqzhcslkwnqqe1osswwhef8tqqxz7i8y0mdm1tv8jh"
