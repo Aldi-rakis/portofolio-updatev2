@@ -67,103 +67,146 @@ export default function UpdateProject() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-start p-10">
-      <div className="bg-white p-6 rounded shadow w-full mt-20 lg:px-40 space-y-4">
-        <h1 className="text-xl font-bold">Update Project</h1>
+    <div className="min-h-screen bg-gray-900 dark:bg-gray-50 flex justify-center items-start p-6 transition-colors duration-300">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-6xl mt-20 space-y-6 border border-gray-200 dark:border-gray-700">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2">Update Project</h1>
+          <p className="text-gray-600 dark:text-gray-400">Edit dan perbarui detail proyek Anda</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="text"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            placeholder="Project Name"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Project Name</label>
+            <input
+              type="text"
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Masukkan nama project"
+            />
+          </div>
 
-          <input
-            type="text"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            placeholder="Tanggal project"
-          />
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Tanggal Project</label>
+            <input
+              type="text"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Contoh: Januari 2024"
+            />
+          </div>
 
-          <input
-            type="text"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            placeholder="Masukin link porject anda"
-          />
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Link Project</label>
+            <input
+              type="text"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="https://example.com"
+            />
+          </div>
 
-          <input
-            type="text"
-            value={stack}
-            onChange={(e) => setStack(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            placeholder="Stack (pisahkan dengan koma)"
-          />
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Technology Stack</label>
+            <input
+              type="text"
+              value={stack}
+              onChange={(e) => setStack(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="React, Node.js, MongoDB (pisahkan dengan koma)"
+            />
+          </div>
 
-          <input
-            type="text"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            placeholder="Role (pisahkan dengan koma)"
-          />
+          <div className="space-y-2 lg:col-span-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Role & Responsibilities</label>
+            <input
+              type="text"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Frontend Developer, UI/UX Designer (pisahkan dengan koma)"
+            />
+          </div>
 
-          <div>
-            <label className="block font-medium mb-1">Gambar saat ini:</label>
-            <div className="flex flex-wrap gap-2">
-              {existingImages.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`preview-${idx}`}
-                  className="w-20 h-20 object-cover border rounded"
-                />
-              ))}
+          <div className="lg:col-span-2 space-y-4">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Gambar Project Saat Ini</label>
+            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+              <div className="flex flex-wrap gap-4">
+                {existingImages.map((img, idx) => (
+                  <div key={idx} className="relative group">
+                    <img
+                      src={img}
+                      alt={`preview-${idx}`}
+                      className="w-100 object-cover border-2 border-gray-300 dark:border-gray-600 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">Preview</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <input
-          type="file"
-          multiple
-          onChange={(e) => setImages([...e.target.files])}
-          className="w-full border px-3 py-2 rounded"
-        />
+        
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Upload Gambar Baru</label>
+          <input
+            type="file"
+            multiple
+            onChange={(e) => setImages([...e.target.files])}
+            className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-200"
+          />
+        </div>
 
 
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Deskripsi Project</label>
+          <div className="bg-white dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600">
+            <Editor
+              apiKey="m1vzrisqzhcslkwnqqe1osswwhef8tqqxz7i8y0mdm1tv8jh"
+              onInit={(evt, editor) => (editorRef.current = editor)}
+              initialValue={description}
+              init={{
+                height: 400,
+                menubar: true,
+                skin: 'oxide',
+                content_css: 'default',
+                plugins: [
+                  'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                  'preview', 'anchor', 'searchreplace', 'visualblocks',
+                  'code', 'fullscreen', 'insertdatetime', 'media', 'table',
+                  'help', 'wordcount', 'formatselect'
+                ],
+                toolbar:
+                  'formatselect | bold italic backcolor | ' +
+                  'alignleft aligncenter alignright alignjustify | ' +
+                  'bullist numlist outdent indent | removeformat | image preview | undo redo | help',
+                block_formats:
+                  'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Pre=pre',
+                placeholder: 'Tulis deskripsi detail tentang proyek Anda...',
+                content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; }',
+              }}
+            />
+          </div>
+        </div>
 
-        <Editor
-          apiKey="m1vzrisqzhcslkwnqqe1osswwhef8tqqxz7i8y0mdm1tv8jh"
-          onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue={description}
-          init={{
-            height: 400,
-            menubar: true,
-            plugins: [
-              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
-              'preview', 'anchor', 'searchreplace', 'visualblocks',
-              'code', 'fullscreen', 'insertdatetime', 'media', 'table',
-              'help', 'wordcount', 'formatselect'
-            ],
-            toolbar:
-              'formatselect | bold italic backcolor | ' +
-              'alignleft aligncenter alignright alignjustify | ' +
-              'bullist numlist outdent indent | removeformat | image preview | undo redo | help',
-            block_formats:
-              'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Pre=pre',
-            placeholder: 'Edit deskripsi proyek...',
-          }}
-        />
-
-        <button
-          onClick={handleUpdate}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Update Project
-        </button>
+        <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <button
+            onClick={handleUpdate}
+            className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            💾 Update Project
+          </button>
+          <button
+            onClick={() => window.history.back()}
+            className="flex-1 sm:flex-none bg-gray-500 dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-700 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+          >
+            ← Kembali
+          </button>
+        </div>
       </div>
     </div>
   );

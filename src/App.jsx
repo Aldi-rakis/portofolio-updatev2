@@ -5,8 +5,8 @@ import Navbar from './component/Navbar';
 import { motion, useScroll, useSpring } from "framer-motion";
 function App() {
   const [count, setCount] = useState(0)
- const { scrollYProgress } = useScroll();
-  const scaleY  = useSpring(scrollYProgress, {
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
@@ -15,11 +15,11 @@ function App() {
   return (
 
     <div className="App scrollbar-hide ">
-     
 
-    <Navbar />
-     <motion.div className="progress-bar" style={{ scaleY }} />
-      <Routes/>
+
+      <Navbar />
+      <motion.div className="progress-bar" style={{ scaleY }} />
+      <Routes />
 
     </div>
 
