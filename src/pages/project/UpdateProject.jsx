@@ -15,6 +15,8 @@ export default function UpdateProject() {
   const [existingImages, setExistingImages] = useState([]);
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
+  const [bannerImage, setBannerImage] = useState(null);
+  const [existingBanner, setExistingBanner] = useState('');
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -30,6 +32,7 @@ export default function UpdateProject() {
         setLink(data.link);
         setDescription(data.description);
         setExistingImages(data.image || []);
+        setExistingBanner(data.banner_image || '');
       } catch (err) {
         console.error('❌ Gagal mengambil data project:', err);
       }
@@ -48,6 +51,10 @@ export default function UpdateProject() {
     formData.append('date', date);
     formData.append('stack', JSON.stringify(stack.split(',').map(s => s.trim())));
     formData.append('role', JSON.stringify(role.split(',').map(r => r.trim())));
+
+    if (bannerImage) {
+      formData.append('banner_image', bannerImage);
+    }
 
     for (let i = 0; i < images.length; i++) {
       formData.append('image', images[i]);
@@ -130,7 +137,23 @@ export default function UpdateProject() {
             />
           </div>
 
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-1 space-y-4">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Banner Project Saat Ini</label>
+            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+              {existingBanner && (
+                <div className="relative group">
+                  <img
+                    src={existingBanner}
+                    alt="Current Banner"
+                    className="w-full h-48 object-cover rounded-lg shadow-md"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          
+          <div className="lg:col-span-1 space-y-4">
             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Gambar Project Saat Ini</label>
             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
               <div className="flex flex-wrap gap-4">
@@ -139,7 +162,7 @@ export default function UpdateProject() {
                     <img
                       src={img}
                       alt={`preview-${idx}`}
-                      className="w-100 object-cover border-2 border-gray-300 dark:border-gray-600 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                      className="w-45 object-cover border-2 border-gray-300 dark:border-gray-600 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
                       <span className="text-white text-xs">Preview</span>
@@ -149,9 +172,20 @@ export default function UpdateProject() {
               </div>
             </div>
           </div>
+
+           <div className="lg:col-span-1 space-y-2 h-full">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Upload Banner Baru</label>
+          <input
+            type="file"
+            onChange={(e) => setBannerImage(e.target.files[0])}
+            className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-200"
+          />
         </div>
-        
-        <div className="space-y-2">
+
+       
+
+
+            <div className="lg:col-span-1 space-y-2">
           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Upload Gambar Baru</label>
           <input
             type="file"
@@ -160,6 +194,11 @@ export default function UpdateProject() {
             className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-200"
           />
         </div>
+        </div>
+        
+       
+
+       
 
 
         <div className="space-y-2">
@@ -181,7 +220,7 @@ export default function UpdateProject() {
                   'help', 'wordcount', 'formatselect'
                 ],
                 toolbar:
-                  'formatselect | bold italic backcolor | ' +
+                  'quickbars_selection_toolbar | blocks fontfamily fontsize | bold underline strikethrough italic backcolor  | ' +
                   'alignleft aligncenter alignright alignjustify | ' +
                   'bullist numlist outdent indent | removeformat | image preview | undo redo | help',
                 block_formats:

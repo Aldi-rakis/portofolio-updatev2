@@ -9,10 +9,12 @@ export default function ProjectDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { list: projects, status } = useSelector((state) => state.projects);
+  console.log('projects', projects, status);
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchProjects());
+    if (status === 'idle' || status === 'loading') {
+      dispatch(fetchProjects())
+        ;
     }
   }, [status, dispatch]);
 
@@ -33,72 +35,95 @@ export default function ProjectDetail() {
   //     fetchProject();
   //   }, [id]);
 
-  //   if (loading) return <div className="p-10 text-center">Loading...</div>;
-  if (!project) return <div className="p-10 text-center text-red-500">Project not found.</div>;
-
-  return (
-    
-    <div className="min-h-screen bg-gray-900 dark:bg-gray-50 py-10 px-6">
-      <div className="max-w-5xl mx-auto rounded shadow p-8 space-y-2">
-        <a
-          href="/project"
-          className="flex items-center text-blue-500 hover:underline mb-4 w-max"
-        >
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
+  //   if (loading) return <div className="
+  // -10 text-center">Loading...</div>;
+  if (!project) {
+    return (
+      <div className="min-h-screen text-center flex justify-center items-center bg-gray-900 dark:bg-gray-50 py-10 px-6">
+        <h1 className="text-3xl font-bold text-white dark:text-gray-800">Project Not Found</h1>
+      </div>
+    );
+  } else {
+    return (
+      <div className="min-h-screen bg-gray-900 dark:bg-gray-50 py-10 px-2 md:px-6">
+        <div className={`${styles.wrapper} max-w-5xl mx-auto rounded  p-8 space-y-2`}>
+          <a
+            href="/projects"
+            className="flex items-center text-blue-500 hover:underline mb-4 w-max"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-          Back to Project
-        </a>
-        <h1 className="text-3xl  font-bold text-white dark:text-gray-800">{project.ProjectName}</h1>
-        
-        <div className="flex flex-wrap gap-4">
-          {project.image.map((img, idx) => (
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Back to Project
+          </a>
+          <h1 className="text-3xl  font-bold text-white dark:text-gray-800">{project.ProjectName}</h1>
+
+          <div className="flex flex-wrap gap-4">
             <img
-              key={idx}
-              src={img}
-              alt={`Project image ${idx}`}
-              className="w-full h-full object-cover rounded-2xl"
+              src={project.banner_image}
+              alt="Project Banner"
+              className="w-full  object-cover rounded-2xl"
             />
-          ))}
-        </div>
-
-        <div>
-          <h1 className="font-bold text-3xl mt-10 text-white dark:text-gray-800">Stack</h1>
-          <div className="flex gap-4 ">
-            {project.stack.map((item, idx) => (
-              <p className='my-2 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 rounded-full px-6 py-1 max-w-max' key={idx}>{item}</p>
-            ))}
           </div>
-        </div>
 
+          <div className="flex flex-col md:flex-row md:items-center gap-4">
+            <div className="flex-1">
+              <span className="uppercase text-xl font-clash tracking-widest text-white dark:text-gray-800 font-semibold">Stack</span>
+              <div className="flex flex-wrap gap-2 mt-1">
+                {project.stack.map((item, idx) => (
+                  <span
+                    className=" bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 rounded-full px-4 py-1 text-xs font-semibold shadow"
+                    key={idx}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <span className="uppercase text-Xl font-clash tracking-widest text-white dark:text-gray-800 font-semibold">Role</span>
+              <div className="flex flex-row flex-wrap gap-2 mt-1">
+                {project.role.map((role, idx) => (
+                  <span
+                    key={idx}
+                    className=" bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 rounded-full px-4 py-1 text-xs font-semibold shadow"
+                  >
+                    {role}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-        <div>
-          {/* <h1 className="text-4xl text-white dark:text-gray-800 font-semibold mt-6 mb-2">Deskripsi:</h1> */}
-          <div
-            className={`${styles.wrapper} prose max-w-none`}
-            dangerouslySetInnerHTML={{ __html: project.description }}
-          />
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold">Role:</h2>
-          <div className="lis ml-6">
-            {project.role.map((item, idx) => (
-              <p className='my-2 bg-amber-50 rounded p-2' key={idx}>{item}</p>
-            ))}
           </div>
+
+
+
+
+
+
+          <div>
+            {/* <h1 className="text-4xl text-white dark:text-gray-800 font-semibold mt-6 mb-2">Deskripsi:</h1> */}
+            <div
+              className={`${styles.wrapper} prose max-w-none`}
+              dangerouslySetInnerHTML={{ __html: project.description }}
+            />
+          </div>
+
+       
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+
 }

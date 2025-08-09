@@ -169,7 +169,7 @@ const Index = () => {
             >
               {/* Card content */}
               <div 
-              //  onClick={() => window.open(`/projects/${project.projectID}`, "_blank")}
+               onClick={() => window.open(`/projects/${project.projectID}`, "_blank")}
               
               className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
                 <TiltedCard
