@@ -45,8 +45,8 @@ export default function ProjectDetail() {
     );
   } else {
     return (
-      <div className="min-h-screen bg-gray-900 dark:bg-gray-50 py-10 px-2 md:px-6">
-        <div className={`${styles.wrapper} max-w-5xl mx-auto rounded  p-8 space-y-2`}>
+      <div className="min-h-screen bg-gray-900 dark:bg-gray-50 py-18 px-2 md:px-6">
+        <div className={`${styles.wrapper} max-w-5xl mx-auto rounded p-4 md:p-5 lg:p-8 space-y-2`}>
           <a
             href="/projects"
             className="flex items-center text-blue-500 hover:underline mb-4 w-max"

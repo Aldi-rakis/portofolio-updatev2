@@ -79,6 +79,12 @@ const Index = () => {
 
   const navigate = useNavigate();
 
+  const handleDetailsClick = (projectID) => {
+    // Handle the click event for project details
+    navigate(`/projects/${projectID}`);
+  };
+
+
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -488,7 +494,7 @@ const Index = () => {
             >
               <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
 
-              //  onClick={() => navigate(`/projects/${project.projectID}`)}
+                onClick={() => handleDetailsClick(project.projectID)}
               >
                 <TiltedCard
                   imageSrc={project.image[0]}

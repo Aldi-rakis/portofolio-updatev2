@@ -4,7 +4,7 @@ import TiltedCard from "../../component/ui/title3d-card.jsx";
 import { cn } from "../../lib/utils";
 import { Spotlight } from "../../component/ui/spotlight.jsx";
 import rakisMac from "../../assets/img/rakis-mac.png";
-
+import { useNavigate } from "react-router-dom";
 import projectData from "../../data/project.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from '../../redux/projectslice';
@@ -123,6 +123,13 @@ const Index = () => {
     },
   };
 
+  const navigate = useNavigate();
+
+  const handleDetailsClick = (projectID) => {
+    // Handle the click event for project details
+    navigate(`/projects/${projectID}`);
+  };
+
   return (
 
     <> 
@@ -168,10 +175,10 @@ const Index = () => {
              
             >
               {/* Card content */}
-              <div 
-               onClick={() => window.open(`/projects/${project.projectID}`, "_blank")}
-              
-              className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
+              <div
+                onClick={() => handleDetailsClick(project.projectID)}
+                className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
+              >
                 <TiltedCard
                   imageSrc={project.image}
                   altText={project.altText}
