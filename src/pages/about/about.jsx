@@ -7,6 +7,8 @@ import { div } from 'framer-motion/client';
 import fotorakis from '../../assets/img/Foto_Terbaru.png'
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
+import adhivasindo1 from '../../assets/img/journey/adhivasindo-1.png'
+import adhivasindo2 from '../../assets/img/journey/adhivasindo-2.png'
 
 const timelineData = [
     {
@@ -14,11 +16,11 @@ const timelineData = [
         description: "I started my career as a Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
         images: [
             {
-                src: "https://assets.aceternity.com/templates/startup-1.webp",
+                src: adhivasindo1,
                 alt: "startup template"
             },
             {
-                src: "https://assets.aceternity.com/templates/startup-2.webp",
+                src: adhivasindo2,
                 alt: "startup template"
             }
         ],
@@ -111,22 +113,23 @@ const about = () => {
             id: 1,
             number: "(01)",
             title: "Full-Stack Development",
-            description: "Design is more than looks — it's about clarity and connection. I design and develop clean, responsive interfaces that feel intuitive across devices. My focus is on clarity, accessibility, and seamless user experiences.",
+            description: "Build full-stack web applications from front-end to back-end and database using various technologies. With Laravel, React, Next.js, and Node.js.",
             features: [
-                { id: "01", text: "React, Next.js, Node.js" },
-                { id: "02", text: "Database Design & API Development" },
-                { id: "03", text: "MongoDB, PostgreSQL, MySQL" }
+                { id: "01", text: "React, Next.js, Laravel, Node.js" },
+                { id: "02", text: "REST API Development" },
+                { id: "03", text: "PHP, JavaScript, PostgreSQL, MySQL" },
+                { id: "04", text: "GIT, CI/CD, Docker, Linux, VPS" }
             ]
         },
         {
             id: 2,
             number: "(02)",
             title: "UI/UX & Frontend",
-            description: "Creating beautiful and intuitive user interfaces that provide excellent user experiences. Building responsive and interactive web applications using modern technologies and design principles.",
+            description: "Make Mockup design, Prototipe, and Building responsive and interactive web applications using modern technologies and design principles.",
             features: [
-                { id: "01", text: "Figma to Code" },
-                { id: "02", text: "Responsive Design" },
-                { id: "03", text: "Interactive Animations" }
+                { id: "01", text: "Figma, Tailwind CSS, Bootstrap, Motion" },
+                { id: "02", text: "Figma to code, Responsive Design" },
+                { id: "03", text: "Animations" }
             ]
         },
         {
@@ -310,7 +313,7 @@ const about = () => {
                                                         {service.description}
                                                     </p>
                                                     {service.features.map((feature) => (
-                                                        <div key={feature.id} className="flex items-center gap-2 md:gap-3">
+                                                        <div key={feature.id} className="flex items-start gap-2 md:gap-3">
                                                             <span className="text-orange-500 font-bold">{feature.id}</span>
                                                             <span className="text-white dark:text-[#0b0b0d] font-medium">
                                                                 {feature.text}
