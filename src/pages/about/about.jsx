@@ -4,140 +4,100 @@ import { InfiniteRibbonImage } from '../../component/ui/infinite-ribbon-image'
 import StackIcons from '../../assets/stack/Index.jsx';
 import { Timeline } from "../../component/ui/timeline.jsx";
 import { div } from 'framer-motion/client';
-
+import fotorakis from '../../assets/img/Foto_Terbaru.png'
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 
-const data = [
+const timelineData = [
     {
         title: "PT Adhivasindo",
-        content: (
-            <div>
-                <p className="mb-8 text-xs font-normal dark:text-neutral-800 md:text-sm text-neutral-200">
-                    Built and launched Aceternity UI and Aceternity UI Pro from scratch
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                    <img
-                        src="https://assets.aceternity.com/templates/startup-1.webp"
-                        alt="startup template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/templates/startup-2.webp"
-                        alt="startup template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                </div>
-            </div>
-        ),
+        description: "I started my career as a Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
+        images: [
+            {
+                src: "https://assets.aceternity.com/templates/startup-1.webp",
+                alt: "startup template"
+            },
+            {
+                src: "https://assets.aceternity.com/templates/startup-2.webp",
+                alt: "startup template"
+            }
+        ],
+        checklistItems: []
     },
     {
         title: "Early 2023",
-        content: (
-            <div>
-                <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-                    I usually run out of copy, but when I see content this big, I try to
-                    integrate lorem ipsum.
-                </p>
-                <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-                    Lorem ipsum is for people who are too lazy to write copy. But we are
-                    not. Here are some more example of beautiful designs I built.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                    <img
-                        src="https://assets.aceternity.com/pro/hero-sections.png"
-                        alt="hero template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/features-section.png"
-                        alt="feature template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/pro/bento-grids.png"
-                        alt="bento template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/cards.png"
-                        alt="cards template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                </div>
-            </div>
-        ),
+        description: [
+            "I usually run out of copy, but when I see content this big, I try to integrate lorem ipsum.",
+        ],
+        images: [
+            { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
+            { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
+            { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
+            { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
+        ],
+        checklistItems: []
     },
     {
         title: "Changelog",
-        content: (
-            <div>
-                <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-                    Deployed 5 new components on Aceternity today
-                </p>
-                <div className="mb-8">
-                    <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-                        ✅ Card grid component
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-                        ✅ Startup template Aceternity
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-                        ✅ Random file upload lol
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-                        ✅ Himesh Reshammiya Music CD
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-                        ✅ Salman Bhai Fan Club registrations open
-                    </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                    <img
-                        src="https://assets.aceternity.com/pro/hero-sections.png"
-                        alt="hero template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/features-section.png"
-                        alt="feature template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/pro/bento-grids.png"
-                        alt="bento template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                    <img
-                        src="https://assets.aceternity.com/cards.png"
-                        alt="cards template"
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                </div>
-            </div>
-        ),
-    },
+        description: "Deployed 5 new components on Aceternity today",
+        images: [
+            { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
+            { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
+            { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
+            { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
+        ],
+        checklistItems: [
+            'Build with React Js, Node Js',
+            'make an API',
+            'Fullstack'
+        ]
+    }
 ];
+
+const data = timelineData.map(item => ({
+    title: item.title,
+    content: (
+        <div className='border-t-2 border-amber-50 py-4'>
+            {/* Handle description(s) */}
+            {Array.isArray(item.description) ? (
+                item.description.map((desc, idx) => (
+                    <p key={idx} className="mb-8 text-xs font-normal text-white dark:text-gray-500">
+                        {desc}
+                    </p>
+                ))
+            ) : (
+                <p className="mb-8 text-xs font-normal dark:text-neutral-800 md:text-sm text-neutral-200">
+                    {item.description}
+                </p>
+            )}
+
+            {/* Handle checklist if it exists */}
+            {item.checklistItems.length > 0 && (
+                <div className="mb-8">
+                    {item.checklistItems.map((checkItem, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs dark:text-neutral-700 md:text-sm text-neutral-300">
+                            ✅ {checkItem}
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {/* Handle image grid */}
+            <div className="grid grid-cols-2 gap-4">
+                {item.images.map((img, idx) => (
+                    <img
+                        key={idx}
+                        src={img.src}
+                        alt={img.alt}
+                        width={500}
+                        height={500}
+                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}));
 
 
 
@@ -223,7 +183,7 @@ const about = () => {
                                 {/* Profile Image Container */}
                                 <div className='w-80 h-90 lg:w-96 lg:h-120 rounded-b-full overflow-hidden border-4  shadow-2xl'>
                                     <img
-                                        src="/src/assets/img/Foto_Terbaru.png"
+                                        src={fotorakis}
                                         alt="Profile"
                                         className='w-full h-full object-cover'
                                     />
@@ -302,68 +262,68 @@ const about = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-1 gap-16 items-start">
 
                         <div className="space-y-16">
-      {servicesData.map((service, idx) => {
-        const ref = useRef(null);
-        const isInView = useInView(ref, { once: true, amount: 0.2 }); 
-        // amount: 0.2 artinya 20% elemen kelihatan baru trigger
+                            {servicesData.map((service, idx) => {
+                                const ref = useRef(null);
+                                const isInView = useInView(ref, { once: true, amount: 0.2 });
+                                // amount: 0.2 artinya 20% elemen kelihatan baru trigger
 
-        return (
-          <div
-            key={service.id}
-            className="flex flex-row md:flex-row gap-2 md:gap-80 lg:gap-100 justify-between items-start"
-            data-service-index={idx}
-          >
-            {/* Nomor */}
-            <div className="text-xl lg:text-3xl md:text-5xl font-bold text-orange-500 mb-4 md:mb-0">
-              ({idx + 1})
-            </div>
+                                return (
+                                    <div
+                                        key={service.id}
+                                        className="flex flex-row md:flex-row gap-2 md:gap-80 lg:gap-100 justify-between items-start"
+                                        data-service-index={idx}
+                                    >
+                                        {/* Nomor */}
+                                        <div className="text-xl lg:text-3xl md:text-5xl font-bold text-orange-500 mb-4 md:mb-0">
+                                            ({idx + 1})
+                                        </div>
 
-            {/* Konten */}
-            <motion.div
-              ref={ref}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.6,
-                delay: idx * 0.2,
-                ease: "easeOut"
-              }}
-              className="group hover:translate-x-4 transition-all duration-500 transform"
-            >
-              <div className="border-l-2 border-gray-600 dark:border-gray-400 group-hover:border-orange-500 pl-4 md:pl-8 transition-colors duration-500">
-                <h3 className="text-2xl md:text-5xl font-bold text-white dark:text-[#0b0b0d] mb-4 group-hover:text-orange-500 transition-colors duration-500">
-                  {service.title}
-                </h3>
+                                        {/* Konten */}
+                                        <motion.div
+                                            ref={ref}
+                                            initial={{ opacity: 0, y: 50 }}
+                                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                            transition={{
+                                                duration: 0.6,
+                                                delay: idx * 0.2,
+                                                ease: "easeOut"
+                                            }}
+                                            className="group hover:translate-x-4 transition-all duration-500 transform"
+                                        >
+                                            <div className="border-l-2 border-gray-600 dark:border-gray-400 group-hover:border-orange-500 pl-4 md:pl-8 transition-colors duration-500">
+                                                <h3 className="text-2xl md:text-5xl font-bold text-white dark:text-[#0b0b0d] mb-4 group-hover:text-orange-500 transition-colors duration-500">
+                                                    {service.title}
+                                                </h3>
 
-                <motion.div
-                  id="service-description"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{
-                    duration: 0.6,
-                    delay: idx * 0.3,
-                    ease: "easeOut"
-                  }}
-                  className="space-y-2 md:space-y-3"
-                >
-                  <p className="text-gray-300 dark:text-gray-700 text-base md:text-lg mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-                  {service.features.map((feature) => (
-                    <div key={feature.id} className="flex items-center gap-2 md:gap-3">
-                      <span className="text-orange-500 font-bold">{feature.id}</span>
-                      <span className="text-white dark:text-[#0b0b0d] font-medium">
-                        {feature.text}
-                      </span>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        );
-      })}
-    </div>
+                                                <motion.div
+                                                    id="service-description"
+                                                    initial={{ opacity: 0, y: 30 }}
+                                                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                                    transition={{
+                                                        duration: 0.6,
+                                                        delay: idx * 0.3,
+                                                        ease: "easeOut"
+                                                    }}
+                                                    className="space-y-2 md:space-y-3"
+                                                >
+                                                    <p className="text-gray-300 dark:text-gray-700 text-base md:text-lg mb-6 leading-relaxed">
+                                                        {service.description}
+                                                    </p>
+                                                    {service.features.map((feature) => (
+                                                        <div key={feature.id} className="flex items-center gap-2 md:gap-3">
+                                                            <span className="text-orange-500 font-bold">{feature.id}</span>
+                                                            <span className="text-white dark:text-[#0b0b0d] font-medium">
+                                                                {feature.text}
+                                                            </span>
+                                                        </div>
+                                                    ))}
+                                                </motion.div>
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                );
+                            })}
+                        </div>
 
                     </div>
                 </div>
