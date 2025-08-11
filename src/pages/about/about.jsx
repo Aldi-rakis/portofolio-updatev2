@@ -9,11 +9,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import adhivasindo1 from '../../assets/img/journey/adhivasindo-1.png'
 import adhivasindo2 from '../../assets/img/journey/adhivasindo-2.png'
+import rekamin1 from '../../assets/img/journey/rekamin-1.png'
+import rekamin2 from '../../assets/img/journey/rekamin-2.png'
 
 const timelineData = [
     {
         title: "PT Adhivasindo",
-        description: "I started my career as a Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
+        description: "I started my career as a Internship Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
         images: [
             {
                 src: adhivasindo1,
@@ -27,20 +29,22 @@ const timelineData = [
         checklistItems: []
     },
     {
-        title: "Early 2023",
+        title: "Program at Investree X Rakamin Academy (Virtual Internship)",
         description: [
-            "I usually run out of copy, but when I see content this big, I try to integrate lorem ipsum.",
+            "I participated in a virtual internship program at Investree X Rakamin Academy, where I learned about full-stack development and worked on real-world projects.",
+           
         ],
         images: [
-            { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
-            { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
-            { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
-            { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
+            { src: rekamin1, alt: "hero template" },
+            { src: rekamin2, alt: "hero template" },
+            // { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
+            // { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
+            // { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
         ],
-        checklistItems: []
+        checklistItems: ['PHP, Laravel, Mysql']
     },
     {
-        title: "Changelog",
+        title: "POMN MIjelin APP",
         description: "Deployed 5 new components on Aceternity today",
         images: [
             { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
@@ -73,12 +77,27 @@ const data = timelineData.map(item => ({
                 </p>
             )}
 
-            {/* Handle checklist if it exists */}
             {item.checklistItems.length > 0 && (
                 <div className="mb-8">
                     {item.checklistItems.map((checkItem, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs dark:text-neutral-700 md:text-sm text-neutral-300">
-                            ✅ {checkItem}
+                        <div key={idx} className="flex items-center mt-2 gap-3 text-xs dark:text-neutral-700 md:text-sm text-neutral-300">
+                            <div className="flex-shrink-0 w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
+                                <svg 
+                                    className="w-3 h-3 text-white" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24" 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path 
+                                        strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        strokeWidth="2.5" 
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
+                                </svg>
+                            </div>
+                            {checkItem}
                         </div>
                     ))}
                 </div>
