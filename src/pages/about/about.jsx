@@ -32,7 +32,7 @@ const timelineData = [
         title: "Program at Investree X Rakamin Academy (Virtual Internship)",
         description: [
             "I participated in a virtual internship program at Investree X Rakamin Academy, where I learned about full-stack development and worked on real-world projects.",
-           
+
         ],
         images: [
             { src: rekamin1, alt: "hero template" },
@@ -47,10 +47,23 @@ const timelineData = [
         title: "POMN MIjelin APP",
         description: "Deployed 5 new components on Aceternity today",
         images: [
-            { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
-            { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
+
             { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
             { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
+        ],
+        checklistItems: [
+            'Build with React Js, Node Js',
+            'make an API',
+            'Fullstack'
+        ]
+    },
+    {
+        title: "POMN aa APP",
+        description: "Deployed 5 new components on Aceternity today",
+        images: [
+            { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
+            { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
+
         ],
         checklistItems: [
             'Build with React Js, Node Js',
@@ -67,7 +80,7 @@ const data = timelineData.map(item => ({
             {/* Handle description(s) */}
             {Array.isArray(item.description) ? (
                 item.description.map((desc, idx) => (
-                    <p key={idx} className="mb-8 text-xs font-normal text-white dark:text-gray-500">
+                    <p key={idx} className="mb-8 text-xs font-normal text-white dark:text-black">
                         {desc}
                     </p>
                 ))
@@ -82,17 +95,17 @@ const data = timelineData.map(item => ({
                     {item.checklistItems.map((checkItem, idx) => (
                         <div key={idx} className="flex items-center mt-2 gap-3 text-xs dark:text-neutral-700 md:text-sm text-neutral-300">
                             <div className="flex-shrink-0 w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
-                                <svg 
-                                    className="w-3 h-3 text-white" 
-                                    fill="none" 
-                                    stroke="currentColor" 
-                                    viewBox="0 0 24 24" 
+                                <svg
+                                    className="w-3 h-3 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
-                                    <path 
-                                        strokeLinecap="round" 
-                                        strokeLinejoin="round" 
-                                        strokeWidth="2.5" 
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2.5"
                                         d="M5 13l4 4L19 7"
                                     ></path>
                                 </svg>
@@ -125,6 +138,8 @@ const data = timelineData.map(item => ({
 
 const about = () => {
     const [visibleServices, setVisibleServices] = useState([]);
+    const [showMoreServices, setShowMoreServices] = useState(false);
+    const [servicesToShow, setServicesToShow] = useState(3);
 
     // Services data
     const servicesData = [
@@ -229,7 +244,9 @@ const about = () => {
 
                             <div className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'>
                                 <a
-                                    href="/contact"
+                                    href="src/assets/cv/CV_Aldhi Raqiswandri_.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className='bg-transparent border-2 border-white dark:border-[#0b0b0d] text-white dark:text-[#0b0b0d] px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-[#0b0b0d] dark:hover:bg-[#0b0b0d] dark:hover:text-white transition-all duration-300'
                                 >
                                     My Resume
