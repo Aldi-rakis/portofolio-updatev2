@@ -35,7 +35,12 @@ import { useNavigate } from 'react-router-dom';
 
 import StackIcons from '../../assets/stack/Index.jsx';
 
+import API from "../../assets/service/API.png"
+import BEC from "../../assets/service/development.jpg"
+import UIUX from "../../assets/service/ui-ux.webp";
+import arsitektur from "../../assets/service/arsitektur.jpg";
 import { BiLinkExternal } from "react-icons/bi";
+import { a } from "framer-motion/client";
 const Index = () => {
   const projectss = [
     {
@@ -109,28 +114,28 @@ const Index = () => {
       description:
         "Building responsive websites and applications. Providing users with an enriching experience that adapts to any device and screen size.",
       image:
-        "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
+        BEC,
     },
     {
       title: "System Architecture",
       description:
         "Designing scalable and maintainable systems tailored to business needs and long-term growth.",
       image:
-        "https://cdn.pixabay.com/photo/2024/03/09/14/58/laptop-8622746_1280.png",
+        arsitektur,
     },
     {
       title: "UI/UX Implementation",
       description:
         "Creating clean, modern interfaces with a focus on usability and user engagement.",
       image:
-        "https://cdn.pixabay.com/photo/2016/11/20/09/06/laptop-1842297_1280.jpg",
+      UIUX,
     },
     {
       title: "API Development",
       description:
         "Developing secure and efficient RESTful APIs for smooth and reliable data communication between systems.",
       image:
-        "https://devrajchatribin.com/_next/image?url=%2Fimages%2Fbranding.avif&w=1200&q=100", // ganti sesuai path kamu
+        API
     },
   ];
 

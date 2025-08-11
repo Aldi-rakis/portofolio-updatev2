@@ -6,6 +6,7 @@ import TiptapEditor from '../pages/text_editor/TiptapEditor.jsx';
 import ProjectDetail from '../pages/project/projectDetail.jsx';
 import UpdateProject from '../pages/project/UpdateProject.jsx';
 import CreateProjectPage from '../pages/text_editor/CreateProjectPage.jsx';
+import About from '../pages/about/about.jsx';
 const RouteIndex = () => {
   return (
     <Routes>
@@ -13,7 +14,7 @@ const RouteIndex = () => {
               
           
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<Home />} />
+              <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Project />} />
               <Route path="/blog" element={<Home />} />
 
