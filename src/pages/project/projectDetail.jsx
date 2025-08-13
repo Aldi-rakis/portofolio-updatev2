@@ -12,6 +12,8 @@ export default function ProjectDetail() {
   console.log('projects', projects, status);
 
   useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (status === 'idle' || status === 'loading') {
       dispatch(fetchProjects())
         ;
@@ -40,7 +42,7 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen text-center flex justify-center items-center bg-gray-900 dark:bg-gray-50 py-10 px-6">
-        <h1 className="text-3xl font-bold text-white dark:text-gray-800">Project Not Found</h1>
+        {/* <h1 className="text-3xl font-bold text-white dark:text-gray-800">Project Not Found</h1> */}
       </div>
     );
   } else {
@@ -49,7 +51,7 @@ export default function ProjectDetail() {
         <div className={`${styles.wrapper} max-w-5xl mx-auto rounded p-4 md:p-5 lg:p-8 space-y-2`}>
           <a
             href="/projects"
-            className="flex items-center text-blue-500 hover:underline mb-4 w-max"
+            className="flex items-center text-white no-underline hover:underline mb-4 w-max"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -66,14 +68,73 @@ export default function ProjectDetail() {
             </svg>
             Back to Project
           </a>
-          <h1 className="text-3xl  font-bold text-white dark:text-gray-800">{project.ProjectName}</h1>
 
-          <div className="flex flex-wrap gap-4">
-            <img
-              src={project.banner_image}
-              alt="Project Banner"
-              className="w-full  object-cover rounded-2xl"
+          {project.banner_image && (
+            <div className="flex flex-wrap gap-4">
+              <img
+                src={project.banner_image}
+                alt="Project Banner"
+                className="w-full  object-cover rounded-2xl"
             />
+          </div>
+          )}
+
+          <div className='flex justify-between items-center my-6'>
+            <h1 className="text-5xl font-clash  font-bold text-white dark:text-gray-800">{project.ProjectName}</h1>
+
+            {project.link && (
+              <button
+                type="button"
+                onClick={() => window.open(project.link, "_blank")}
+                className="
+      relative overflow-hidden border-2 py-2 px-4 rounded-full
+      transition-colors duration-300
+      dark:text-black text-white
+      border-gray-200 dark:border-gray-800
+       group cursor-pointer
+       hover:scale-1.2
+
+    "
+              >
+                {/* Background animasi */}
+                <span
+                  className="
+        absolute inset-0 h-0 group-hover:h-full
+        transition-all duration-500 ease-out
+        bg-gray-200 dark:bg-gray-800
+        z-0
+      "
+                  style={{ top: "auto", bottom: 0 }} // animasi isi dari bawah
+                ></span>
+
+                {/* Teks */}
+                <span
+                  className="
+        relative z-10
+        group-hover:text-gray-800 dark:group-hover:text-white
+        transition-colors duration-300
+      "
+                >
+                  Check this out
+                </span>
+              </button>
+            )}
+
+
+
+
+
+
+
+
+
+          </div>
+
+          <div className='short-description'>
+            <p>
+              {project.short_description}
+
+            </p>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -106,6 +167,8 @@ export default function ProjectDetail() {
 
           </div>
 
+          <hr />
+
 
 
 
@@ -119,7 +182,7 @@ export default function ProjectDetail() {
             />
           </div>
 
-       
+
         </div>
       </div>
     );

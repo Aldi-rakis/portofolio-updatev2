@@ -99,6 +99,8 @@ const Index = () => {
   const { list: projects, status } = useSelector((state) => state.projects);
 
   useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (status === 'idle') {
       dispatch(fetchProjects());
     }
@@ -140,7 +142,7 @@ const Index = () => {
     document.querySelector('.projects-section').scrollIntoView({ 
       behavior: 'smooth',
       block: 'start'
-    });
+  });
   }
 };
 

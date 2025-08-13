@@ -82,15 +82,15 @@
 
 
     // Project title styling
-        h1 {
-            font-size: 3rem;
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-top: 1.5rem;
-            text-wrap: pretty;
-            // font-family: Beauty, sans-serif;
-        }
+        // h1 {
+        //     font-size: 3rem;
+        //     font-family: 'Clash Display', sans-serif;
+        //     font-weight: 700;
+        //     line-height: 1.1;
+        //     // margin-top: 1.5rem;
+        //     text-wrap: pretty;
+        //     // font-family: Beauty, sans-serif;
+        // }
 
      h2, h3, h4, h5, h6 {
         font-weight: 700;
@@ -143,9 +143,10 @@
 
     // Links in dynamic content
     a {
-        color: #3b82f6; // blue-500
+        color: #d6dde8; // blue-500
         text-decoration: underline;
         transition: color 0.2s ease;
+        text-decoration: none;
         
         &:hover {
             color: #1d4ed8; // blue-700
