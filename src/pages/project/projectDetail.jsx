@@ -79,7 +79,7 @@ export default function ProjectDetail() {
           </div>
           )}
 
-          <div className='flex justify-between items-center my-6'>
+          <div className=' gap-6 flex flex-col md:flex-row justify-between items-start md:items-center my-6'>
             <h1 className="text-5xl font-clash  font-bold text-white dark:text-gray-800">{project.ProjectName}</h1>
 
             {project.link && (
@@ -87,23 +87,23 @@ export default function ProjectDetail() {
                 type="button"
                 onClick={() => window.open(project.link, "_blank")}
                 className="
-      relative overflow-hidden border-2 py-2 px-4 rounded-full
-      transition-colors duration-300
-      dark:text-black text-white
-      border-gray-200 dark:border-gray-800
-       group cursor-pointer
-       hover:scale-1.2
+                    relative overflow-hidden border-2 py-2 px-4 rounded-full
+                    transition-colors duration-300
+                    dark:text-black text-white
+                    border-gray-200 dark:border-gray-800
+                    group cursor-pointer
+                    hover:scale-1.2
 
-    "
+                  "
               >
                 {/* Background animasi */}
                 <span
                   className="
-        absolute inset-0 h-0 group-hover:h-full
-        transition-all duration-500 ease-out
-        bg-gray-200 dark:bg-gray-800
-        z-0
-      "
+                absolute inset-0 h-0 group-hover:h-full
+                transition-all duration-500 ease-out
+                bg-gray-200 dark:bg-gray-800
+                z-0
+              "
                   style={{ top: "auto", bottom: 0 }} // animasi isi dari bawah
                 ></span>
 
