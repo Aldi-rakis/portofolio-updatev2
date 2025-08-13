@@ -58,7 +58,7 @@ export const Timeline = ({ data }) => {
         </h2>
       </div>
 
-      <div className="relative max-w-7xl mx-auto pb-20">
+      <div className="relative max-w-7xl mx-auto pb-4">
        {data.slice(0, limit).map((item, index) => {
           const isNewItem = index >= prevLimit; // item yang baru muncul
 

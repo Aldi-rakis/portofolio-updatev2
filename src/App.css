@@ -113,3 +113,17 @@ body::-webkit-scrollbar {
   transform-origin: top; /* Mulai dari atas */
   z-index: 9999;
 }
+
+.service {
+  position: sticky;
+}
+
+.service:last-child {
+  top: 10px;
+}
+
+@media (min-width: 768px) {
+  .service:last-child {
+    top: 20px;
+  }
+}

@@ -319,21 +319,22 @@ const about = () => {
                 </div>
             </section>
 
-            <section id='my-service' className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-0 px-6">
+            <section id='my-service' className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-0 px-1 mdpx-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="relative">
                         {servicesData.map((service, idx) => (
                             <div
                                 key={service.id}
                                 ref={el => serviceRefs.current[idx] = el}
-                                className={`h-[100vh] flex items-center ${idx === servicesData.length - 1 ? 'relative' : 'sticky'}`}
+                                className={`h-[80vh] md:h-[100vh] flex items-center top-[${idx === servicesData.length - 1 ? '10px' : `${idx * 70 + 10}px`}] md:top-[${idx === servicesData.length - 1 ? '20px' : `${idx * 100 + 20}px`}]  ${idx === servicesData.length - 1 ? 'relative' : 'sticky'}`}
                                 style={{ 
                                     zIndex: servicesData.length + idx,
-                                    top: `${idx === servicesData.length - 1 ? '20px' : `${idx * 100 + 10}px`}`
+                                    top: `${idx === servicesData.length - 1 ? '10px' : `${idx * 70 + 10}px`}`,
+                                   
                                 }}
                             >
                                 <div className="w-full  border-t-[1px] border-white bg-[#0b0b0d] dark:bg-[#f6f4e5] p-2">
-                                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-32 items-start">
+                                    <div className="flex flex-row md:flex-col lg:flex-row gap-0 lg:gap-32 items-start">
                                         {/* Nomor */}
                                         <div className="font-beauty text-5xl lg:text-6xl font-bold text-orange-500 opacity-30">
                                             ({String(idx + 1).padStart(2, '0')})
