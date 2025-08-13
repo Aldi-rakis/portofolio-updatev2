@@ -408,9 +408,10 @@
 
     // Links in dynamic content
     a {
-        color: #3b82f6; // blue-500
+        color: #1b1c1e; // blue-500
         text-decoration: underline;
         transition: color 0.2s ease;
+        text-decoration: none;
         
         &:hover {
             color: #1d4ed8; // blue-700
