@@ -379,10 +379,7 @@ const about = () => {
                 </div>
             </section>
 
-            <section className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-20 px-6 min-h-screen" >
-                <p>aaa</p>
-
-            </section>
+          
         </>
     )
 }
