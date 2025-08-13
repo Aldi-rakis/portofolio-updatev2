@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Routes from './route/Index';
 import Navbar from './component/Navbar';
 import { motion, useScroll, useSpring } from "framer-motion";
+import ScrollToTop from './component/ui/ScrollToTop';
 function App() {
   const [count, setCount] = useState(0)
   const { scrollYProgress } = useScroll();
@@ -17,6 +18,7 @@ function App() {
     <div className="App scrollbar-hide ">
 
 
+      <ScrollToTop />
       <Navbar />
       <motion.div className="progress-bar" style={{ scaleY }} />
       <Routes />
