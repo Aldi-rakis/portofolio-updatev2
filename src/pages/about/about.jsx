@@ -145,7 +145,7 @@ const about = () => {
     const servicesData = [
         {
             id: 1,
-            number: "(01)",
+            number: "(02)",
             title: "Full-Stack Development",
             description: "Build full-stack web applications from front-end to back-end and database using various technologies. With Laravel, React, Next.js, and Node.js.",
             features: [
@@ -177,6 +177,7 @@ const about = () => {
                 { id: "03", text: "Accessibility Standards" }
             ]
         }
+       
     ];
 
     useEffect(() => {
@@ -208,6 +209,30 @@ const about = () => {
         return () => observer.disconnect();
     }, []);
 
+    const [activeService, setActiveService] = useState(0);
+    const serviceRefs = useRef([]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            serviceRefs.current.forEach((ref, index) => {
+                if (ref) {
+                    const rect = ref.getBoundingClientRect();
+                    
+                    // Calculate if element is in the center viewport
+                    if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2) {
+                        // setActiveService(index);
+                    }
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <>
             <section className={`${styles.about} bg-[#0b0b0d] dark:bg-[#f6f4e5] py-10 px-6 min-h-screen`}>
@@ -225,8 +250,6 @@ const about = () => {
                                         className='w-full h-full object-cover'
                                     />
                                 </div>
-
-
                             </div>
                         </div>
 
@@ -296,76 +319,68 @@ const about = () => {
                 </div>
             </section>
 
-            <section id='my-service' className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-20 px-6 ">
+            <section id='my-service' className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-0 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-1 gap-16 items-start">
-
-                        <div className="space-y-16">
-                            {servicesData.map((service, idx) => {
-                                const ref = useRef(null);
-                                const isInView = useInView(ref, { once: true, amount: 0.2 });
-                                // amount: 0.2 artinya 20% elemen kelihatan baru trigger
-
-                                return (
-                                    <div
-                                        key={service.id}
-                                        className="flex flex-row md:flex-row gap-2 md:gap-80 lg:gap-100 justify-between items-start"
-                                        data-service-index={idx}
-                                    >
+                    <div className="relative">
+                        {servicesData.map((service, idx) => (
+                            <div
+                                key={service.id}
+                                ref={el => serviceRefs.current[idx] = el}
+                                className={`h-[100vh] flex items-center ${idx === servicesData.length - 1 ? 'relative' : 'sticky'}`}
+                                style={{ 
+                                    zIndex: servicesData.length + idx,
+                                    top: `${idx === servicesData.length - 1 ? '20px' : `${idx * 100 + 10}px`}`
+                                }}
+                            >
+                                <div className="w-full  border-t-[1px] border-white bg-[#0b0b0d] dark:bg-[#f6f4e5] p-2">
+                                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-32 items-start">
                                         {/* Nomor */}
-                                        <div className="text-xl lg:text-3xl md:text-5xl font-bold text-orange-500 mb-4 md:mb-0">
-                                            ({idx + 1})
+                                        <div className="font-beauty text-5xl lg:text-6xl font-bold text-orange-500 opacity-30">
+                                            ({String(idx + 1).padStart(2, '0')})
                                         </div>
 
                                         {/* Konten */}
-                                        <motion.div
-                                            ref={ref}
-                                            initial={{ opacity: 0, y: 50 }}
-                                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                            transition={{
-                                                duration: 0.6,
-                                                delay: idx * 0.2,
-                                                ease: "easeOut"
-                                            }}
-                                            className="group hover:translate-x-4 transition-all duration-500 transform"
-                                        >
-                                            <div className="border-l-2 border-gray-600 dark:border-gray-400 group-hover:border-orange-500 pl-4 md:pl-8 transition-colors duration-500">
-                                                <h3 className="text-2xl md:text-5xl font-bold text-white dark:text-[#0b0b0d] mb-4 group-hover:text-orange-500 transition-colors duration-500">
-                                                    {service.title}
-                                                </h3>
+                                        <div className="flex-1 font-clash">
+                                            <h3 className="font-clash text-4xl md:text-6xl lg:text-7xl font-bold text-white dark:text-[#0b0b0d] mb-8">
+                                                {service.title}
+                                            </h3>
 
+                                            {/* Show description only when this service is active */}
                                                 <motion.div
-                                                    id="service-description"
-                                                    initial={{ opacity: 0, y: 30 }}
-                                                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                                    transition={{
-                                                        duration: 0.6,
-                                                        delay: idx * 0.3,
-                                                        ease: "easeOut"
-                                                    }}
-                                                    className="space-y-2 md:space-y-3"
+                                                    
+                                                    className=''
                                                 >
-                                                    <p className="text-gray-300 dark:text-gray-700 text-base md:text-lg mb-6 leading-relaxed">
+                                                    <p className="text-gray-300 bg dark:text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
                                                         {service.description}
                                                     </p>
-                                                    {service.features.map((feature) => (
-                                                        <div key={feature.id} className="flex items-start gap-2 md:gap-3">
-                                                            <span className="text-orange-500 font-bold">{feature.id}</span>
-                                                            <span className="text-white dark:text-[#0b0b0d] font-medium">
-                                                                {feature.text}
-                                                            </span>
-                                                        </div>
-                                                    ))}
+                                                    
+                                                    {/* Features list */}
+                                                    <div className="space-y-3">
+                                                        {service.features.map((feature) => (
+                                                            <div key={feature.id} className="flex items-center gap-3">
+                                                                <span className="text-orange-500 font-bold text-sm">
+                                                                    {feature.id}
+                                                                </span>
+                                                                <span className="text-gray-300 dark:text-gray-700 text-sm md:text-base">
+                                                                    {feature.text}
+                                                                </span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
                                                 </motion.div>
-                                            </div>
-                                        </motion.div>
+                                        
+                                        </div>
                                     </div>
-                                );
-                            })}
-                        </div>
-
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
+            </section>
+
+            <section className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-20 px-6 min-h-screen" >
+                <p>aaa</p>
+
             </section>
         </>
     )
