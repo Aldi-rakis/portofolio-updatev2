@@ -43,34 +43,34 @@ const timelineData = [
         ],
         checklistItems: ['PHP, Laravel, Mysql']
     },
-    {
-        title: "POMN MIjelin APP",
-        description: "Deployed 5 new components on Aceternity today",
-        images: [
+    // {
+    //     title: "POMN MIjelin APP",
+    //     description: "Deployed 5 new components on Aceternity today",
+    //     images: [
 
-            { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
-            { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
-        ],
-        checklistItems: [
-            'Build with React Js, Node Js',
-            'make an API',
-            'Fullstack'
-        ]
-    },
-    {
-        title: "POMN aa APP",
-        description: "Deployed 5 new components on Aceternity today",
-        images: [
-            { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
-            { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
+    //         { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
+    //         { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
+    //     ],
+    //     checklistItems: [
+    //         'Build with React Js, Node Js',
+    //         'make an API',
+    //         'Fullstack'
+    //     ]
+    // },
+    // {
+    //     title: "POMN aa APP",
+    //     description: "Deployed 5 new components on Aceternity today",
+    //     images: [
+    //         { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
+    //         { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
 
-        ],
-        checklistItems: [
-            'Build with React Js, Node Js',
-            'make an API',
-            'Fullstack'
-        ]
-    }
+    //     ],
+    //     checklistItems: [
+    //         'Build with React Js, Node Js',
+    //         'make an API',
+    //         'Fullstack'
+    //     ]
+    // }
 ];
 
 const data = timelineData.map(item => ({

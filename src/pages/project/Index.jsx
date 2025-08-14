@@ -161,7 +161,7 @@ const Index = () => {
 
         {/* Filter buttons */}
         <div className="flex justify-start lg:justify-end">
-          <div className="flex space-x-4 mb-6">
+          {/* <div className="flex space-x-4 mb-6">
             {categories.map((category) => (
               <button
                 key={category}
@@ -174,7 +174,7 @@ const Index = () => {
                 {category}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Project Cards */}
