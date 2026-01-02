@@ -13,6 +13,19 @@ import rekamin1 from '../../assets/img/journey/rekamin-1.png'
 import rekamin2 from '../../assets/img/journey/rekamin-2.png'
 
 const timelineData = [
+   {
+  title: "Sieben Technologies",
+  description: "I started my career as a full-time remote Software Engineer and IT Consultant at Sieben Technologies. I work on developing and maintaining scalable web and mobile applications for enterprise-level clients, using technologies such as React.js, Angular, Node.js, Laravel, and React Native. My role involves building APIs, implementing business logic, and collaborating with cross-functional teams to deliver reliable and efficient solutions for big companies.",
+  images: [],
+  checklistItems: [
+    "Full-time remote Software Engineer & IT Consultant",
+    "Developed enterprise web applications using React.js and Angular",
+    "Built RESTful APIs and backend services with Node.js and Laravel",
+    "Worked on mobile application development using React Native",
+    "Handled real-world projects for large-scale company clients"
+  ]
+}
+,
     {
         title: "PT Adhivasindo",
         description: "I started my career as a Internship Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
