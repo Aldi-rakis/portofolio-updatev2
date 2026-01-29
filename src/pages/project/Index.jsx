@@ -179,55 +179,94 @@ const Index = () => {
 
         {/* Project Cards */}
         <div className="z-10  relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10  py-10 text-center">
-          {filteredProjects.slice(0, limit).map((project, index) => (
-            <motion.div
-              key={project.projectID || index}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ delay: index * 0.3, duration: 0.6, ease: "easeOut" }}
-              className="cursor-pointer rounded-2xl"
-             
-            >
-              {/* Card content */}
-              <div
-                onClick={() => handleDetailsClick(project.projectID)}
-                className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
+          {status === 'loading' ? (
+            // Loading skeleton untuk projects
+            Array.from({ length: 6 }).map((_, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ delay: index * 0.1 }}
+                className="cursor-pointer rounded-2xl"
               >
-                <TiltedCard
-                  imageSrc={project.image}
-                  altText={project.altText}
-                  captionText={project.ProjectName}
-                  rotateAmplitude={18}
-                  scaleOnHover={1.3}
-                  rotateOnHover={true}
-                  showMobileWarning={false}
-                  showTooltip={true}
-                  displayOverlayContent={true}
-                />
-              </div>
-
-              {/* Text info */}
-              <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
-                <div className="flex justify-between mb-2">
-                  <p className="hover:underline">{project.ProjectName}</p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500">
-                    <BiLinkExternal className="demo ml-2 inline-block" />
-                  </a>
+                <div className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md">
+                  <div className="aspect-square bg-gray-700 dark:bg-gray-300 rounded-2xl animate-pulse"></div>
+                </div>
+                <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
+                  <div className="flex justify-between mb-2">
+                    <div className="h-6 bg-gray-700 dark:bg-gray-300 rounded animate-pulse w-3/4"></div>
+                    <div className="h-6 bg-gray-700 dark:bg-gray-300 rounded animate-pulse w-6"></div>
+                  </div>
+                  <div className="flex justify-between text-sm font-normal mt-1">
+                    <div className="h-4 bg-gray-700 dark:bg-gray-300 rounded animate-pulse w-1/2"></div>
+                    <div className="h-4 bg-gray-700 dark:bg-gray-300 rounded animate-pulse w-1/4"></div>
+                  </div>
+                </div>
+              </motion.div>
+            ))
+          ) : status === 'failed' ? (
+            // Error state
+            <div className="col-span-full text-center py-20">
+              <div className="text-red-500 text-xl mb-4">Failed to load projects</div>
+              <button 
+                onClick={() => dispatch(fetchProjects())}
+                className="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+              >
+                Retry
+              </button>
+            </div>
+          ) : (
+            // Actual projects  
+            filteredProjects.slice(0, limit).map((project, index) => (
+              <motion.div
+                key={project.projectID || index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ delay: index * 0.3, duration: 0.6, ease: "easeOut" }}
+                className="cursor-pointer rounded-2xl"
+              >
+                {/* Card content */}
+                <div
+                  onClick={() => handleDetailsClick(project.projectID)}
+                  className="w-full px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-black to-gray-800 dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
+                >
+                  <TiltedCard
+                    imageSrc={project.image[0]}
+                    altText={project.altText}
+                    captionText={project.ProjectName}
+                    rotateAmplitude={18}
+                    scaleOnHover={1.3}
+                    rotateOnHover={true}
+                    showMobileWarning={false}
+                    showTooltip={true}
+                    displayOverlayContent={true}
+                  />
                 </div>
 
+                {/* Text info */}
+                <div className="font-dosis text-white dark:text-black text-3xl font-semibold text-start mt-4">
+                  <div className="flex justify-between mb-2">
+                    <p className="hover:underline">{project.ProjectName}</p>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500">
+                      <BiLinkExternal className="demo ml-2 inline-block" />
+                    </a>
+                  </div>
 
-                <div className="flex justify-between text-sm font-normal mt-1">
-                  <p className="text-sm">{project.role.join(', ')}</p>
-                  <p className="text-sm">{project.date}</p>
+                  <div className="flex justify-between text-sm font-normal mt-1">
+                    <p className="text-sm">{project.role.join(', ')}</p>
+                    <p className="text-sm">{project.date}</p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))
+          )}
         </div>
         {/* Load More Button */}
-        {filteredProjects.length > 6 && (
+        {status === 'succeeded' && filteredProjects.length > 6 && (
           <div className="flex justify-center">
             <button
               onClick={handleMore}

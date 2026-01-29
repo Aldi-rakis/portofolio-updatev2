@@ -3,46 +3,64 @@ import axios from 'axios';
 import styles from './projectDetail.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjects } from '../../redux/projectslice';
+import { fetchProjectById } from '../../redux/projectslice';
 import { useParams } from 'react-router-dom';
 export default function ProjectDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { list: projects, status } = useSelector((state) => state.projects);
-  console.log('projects', projects, status);
+  const { currentProject: project, projectDetailStatus, projectDetailError } = useSelector((state) => state.projects);
 
   useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    dispatch(fetchProjectById(id));
+  }, [id, dispatch]);
 
-    if (status === 'idle' || status === 'loading') {
-      dispatch(fetchProjects())
-        ;
-    }
-  }, [status, dispatch]);
+  // Loading component
+  const LoadingSpinner = () => (
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 dark:bg-[#f6f4e5]">
+      <div className="flex flex-col items-center space-y-4">
+        <div className="animate-spin rounded-full h-16 w-16 border-4 border-orange-500 border-t-transparent"></div>
+        <p className="text-white dark:text-gray-800 text-lg font-medium">Loading project details...</p>
+      </div>
+    </div>
+  );
 
-  const project = projects.find(p => String(p.projectID) === id);
-  //   useEffect(() => {
-  //     const fetchProject = async () => {
-  //       try {
-  //         const res = await axios.get(`http://31.97.50.232:3200/api/projects/${id}`);
-  //         setProject(res.data.data);
-  //         console.log(res);
-  //         setLoading(false);
-  //       } catch (err) {
-  //         console.error('Error fetching project:', err);
-  //         setLoading(false);
-  //       }
-  //     };
+  // Error component
+  const ErrorMessage = () => (
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 dark:bg-[#f6f4e5]">
+      <div className="text-center space-y-4">
+        <h1 className="text-3xl font-bold text-red-500">Error Loading Project</h1>
+        <p className="text-white dark:text-gray-800">{projectDetailError}</p>
+        <button 
+          onClick={() => dispatch(fetchProjectById(id))}
+          className="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+        >
+          Retry
+        </button>
+      </div>
+    </div>
+  );
 
-  //     fetchProject();
-  //   }, [id]);
+  if (projectDetailStatus === 'loading') {
+    return <LoadingSpinner />;
+  }
 
-  //   if (loading) return <div className="
-  // -10 text-center">Loading...</div>;
+  if (projectDetailStatus === 'failed') {
+    return <ErrorMessage />;
+  }
   if (!project) {
     return (
-      <div className="min-h-screen text-center flex justify-center items-center bg-gray-900 dark:bg-gray-50 py-10 px-6">
-        {/* <h1 className="text-3xl font-bold text-white dark:text-gray-800">Project Not Found</h1> */}
+      <div className="min-h-screen text-center flex justify-center items-center bg-gray-900 dark:bg-[#f6f4e5] py-10 px-6">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold text-white dark:text-gray-800">Project Not Found</h1>
+          <p className="text-white dark:text-gray-800">The project you're looking for doesn't exist.</p>
+          <a 
+            href="/projects"
+            className="inline-block px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+          >
+            Back to Projects
+          </a>
+        </div>
       </div>
     );
   } else {

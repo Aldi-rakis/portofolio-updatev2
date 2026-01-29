@@ -8,12 +8,21 @@ export const fetchProjects = createAsyncThunk('projects/fetchAll', async () => {
   return res.data.data;
 });
 
+// Fetch project by ID
+export const fetchProjectById = createAsyncThunk('projects/fetchById', async (id) => {
+  const res = await axios.get(`https://api-portov2.rakis.my.id/api/projects/${id}`);
+  return res.data.data;
+});
+
 const projectSlice = createSlice({
   name: 'projects',
   initialState: {
     list: [],
+    currentProject: null,
     status: 'idle', // 'loading' | 'succeeded' | 'failed'
+    projectDetailStatus: 'idle',
     error: null,
+    projectDetailError: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -28,6 +37,18 @@ const projectSlice = createSlice({
       .addCase(fetchProjects.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(fetchProjectById.pending, (state) => {
+        state.projectDetailStatus = 'loading';
+        state.currentProject = null;
+      })
+      .addCase(fetchProjectById.fulfilled, (state, action) => {
+        state.projectDetailStatus = 'succeeded';
+        state.currentProject = action.payload;
+      })
+      .addCase(fetchProjectById.rejected, (state, action) => {
+        state.projectDetailStatus = 'failed';
+        state.projectDetailError = action.error.message;
       });
   },
 });
