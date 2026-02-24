@@ -249,51 +249,90 @@ const about = () => {
     return (
         <>
             <section className={`${styles.about} bg-[#0b0b0d] dark:bg-[#f6f4e5] py-10 px-6 min-h-screen`}>
-                <div className='max-w-6xl mx-auto'>
+                <div className='max-w-7xl mx-auto'>
                     {/* Hero Section */}
-                    <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-30 items-center h-[100vh] md:h-auto lg:min-h-[100vh]'>
-                        {/* Left Side - Profile Image */}
-                        <div className='flex justify-center lg:justify-start  lg:col-span-4'>
-                            <div className='relative'>
-                                {/* Profile Image Container */}
-                                <div className='w-80 h-90 lg:w-96 lg:h-120 rounded-b-full overflow-hidden border-4  shadow-2xl'>
-                                    <img
-                                        src={fotorakis}
-                                        alt="Profile"
-                                        className='w-full h-full object-cover'
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Side - Content */}
-                        <div className='text-center lg:text-left lg:col-span-8'>
-                            <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold font-clash text-white dark:text-[#0b0b0d] mb-6 leading-tight'>
+                    <div className='grid grid-cols-1 xl:grid-cols-12  md:gap-8 lg:gap-12 xl:gap-16 items-center  h-screen py-8 md:py-12 lg:py-16'>
+                        {/* Content Section */}
+                        <div className='order-1 xl:order-1 text-center xl:text-left xl:col-span-7 space-y-2 md:space-y-8'>
+                            <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-6xl font-bold font-clash text-white dark:text-[#0b0b0d] leading-tight'>
                                 A <span className='text-orange-500'>Fullstack developer</span>
                                 <br />
                                 <span className='text-white dark:text-[#0b0b0d]'>& </span>Web developer
                             </h1>
 
-                            <p className='font-dosis text-lg md:text-xl text-gray-300 dark:text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed'>
+                            <p className='font-dosis text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 dark:text-gray-700 max-w-full sm:max-w-2xl mx-auto xl:mx-0 leading-relaxed px-4 sm:px-0'>
                                 I collaborate with brands globally to build impactful, mission-focused web applications that drive results and achieve business goals.
                             </p>
 
-                            <div className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'>
+                            <div className='flex flex-col sm:flex-row gap-3 md:gap-4 justify-center xl:justify-start px-4 sm:px-0'>
                                 <a
                                     href="CV_Aldhi Raqiswandri_.pdf"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className='bg-transparent border-2 border-white dark:border-[#0b0b0d] text-white dark:text-[#0b0b0d] px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-[#0b0b0d] dark:hover:bg-[#0b0b0d] dark:hover:text-white transition-all duration-300'
+                                    className='bg-transparent border-2 border-white dark:border-[#0b0b0d] text-white dark:text-[#0b0b0d] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-white hover:text-[#0b0b0d] dark:hover:bg-[#0b0b0d] dark:hover:text-white transition-all duration-300 text-sm md:text-base'
                                 >
                                     My Resume
                                 </a>
 
                                 <a
                                     href="/projects"
-                                    className='bg-orange-400 dark:bg-orange-500 text-white dark:text-[#0b0b0d] px-8 py-3 rounded-full font-semibold hover:bg-orange-500 dark:hover:bg-orange-600 transition-all duration-300'
+                                    className='bg-orange-400 dark:bg-orange-500 text-white dark:text-[#0b0b0d] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-orange-500 dark:hover:bg-orange-600 transition-all duration-300 text-sm md:text-base'
                                 >
                                     View Projects
                                 </a>
+                            </div>
+                        </div>
+
+                        {/* Developer Info Card */}
+                        <div className='order-2  xl:order-2 flex justify-center xl:justify-center xl:col-span-5 px-4 sm:px-0' style={{ perspective: "1000px" }}>
+                            <div className='relative w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-none'>
+                                {/* Developer Stats Card */}
+                                <motion.div 
+                                    className='w-full sm:w-80 md:w-84 lg:w-96 xl:w-full bg-gradient-to-br from-orange-500/20 to-orange-600/10 backdrop-blur-sm border border-orange-500/30 rounded-2xl p-6 md:p-8 shadow-2xl cursor-pointer transform-gpu mx-auto'
+                                    whileHover={{ 
+                                        scale: 1.05,
+                                        rotateY: 15,
+                                        rotateX: 10,
+                                        z: 50,
+                                        boxShadow: "0 25px 50px -12px rgba(234, 88, 12, 0.5)"
+                                    }}
+                                    transition={{ 
+                                        type: "spring", 
+                                        stiffness: 300, 
+                                        damping: 20,
+                                        duration: 0.4
+                                    }}
+                                    style={{ 
+                                        transformStyle: "preserve-3d"
+                                    }}
+                                >
+                                    <div className='space-y-4 md:space-y-6'>
+                                        {/* Experience */}
+                                        <div className='text-center border-b border-orange-500/30 pb-3 md:pb-4'>
+                                            <h3 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500 font-clash'>2+</h3>
+                                            <p className='text-gray-300 dark:text-gray-700 text-xs sm:text-sm'>Years Experience</p>
+                                        </div>
+                                        
+                                        {/* Key Skills */}
+                                        <div className='space-y-2 md:space-y-3'>
+                                            <h4 className='text-base md:text-lg font-semibold text-white dark:text-[#0b0b0d] font-clash'>Core Expertise</h4>
+                                            <div className='flex flex-wrap gap-1.5 md:gap-2 justify-center'>
+                                                {['React','React Native', 'Node.js', 'Next.js','Laravel', 'Angular JS', 'Web Applications', 'Mobile Applications', ].map((skill, idx) => (
+                                                    <span key={idx} className='px-2 md:px-3 py-1 bg-orange-500/20 text-orange-400 dark:text-orange-600 rounded-full text-xs md:text-sm border border-orange-500/30'>
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Current Role */}
+                                        <div className='text-center pt-3 md:pt-4'>
+                                            <h4 className='text-white dark:text-[#0b0b0d] font-semibold text-sm md:text-base'>Currently at</h4>
+                                            <p className='text-orange-400 dark:text-orange-600 font-clash font-bold text-sm md:text-base'>Remote Worker - IT Consulting</p>
+                                            <p className='text-gray-400 dark:text-gray-600 text-xs md:text-sm'>Software Engineer</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>
