@@ -4,13 +4,13 @@ import axios from 'axios';
 
 // Fetch semua project (sekali saja)
 export const fetchProjects = createAsyncThunk('projects/fetchAll', async () => {
-  const res = await axios.get('https://api-portov2.rakis.my.id/api/projects');
+  const res = await axios.get('https://rakis.mietemporary.my.id/api/projects');
   return res.data.data;
 });
 
 // Fetch project by ID
 export const fetchProjectById = createAsyncThunk('projects/fetchById', async (id) => {
-  const res = await axios.get(`https://api-portov2.rakis.my.id/api/projects/${id}`);
+  const res = await axios.get(`https://rakis.mietemporary.my.id/api/projects/${id}`);
   return res.data.data;
 });
 

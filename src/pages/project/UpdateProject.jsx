@@ -21,7 +21,7 @@ export default function UpdateProject() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`https://api-portov2.rakis.my.id/api/projects/${id}`);
+        const res = await axios.get(`https://rakis.mietemporary.my.id/api/projects/${id}`);
         const data = res.data.data;
         console.log(data);
 
@@ -61,7 +61,7 @@ export default function UpdateProject() {
     }
 
     try {
-      const res = await axios.put(`https://api-portov2.rakis.my.id/api/projects/${id}`, formData, {
+      const res = await axios.put(`https://rakis.mietemporary.my.id/api/projects/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

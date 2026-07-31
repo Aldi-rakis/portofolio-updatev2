@@ -29,7 +29,7 @@ export default function CreateProject() {
     }
 
     try {
-      const res = await axios.post('https://api-portov2.rakis.my.id//api/projects', formData, {
+      const res = await axios.post('https://rakis.mietemporary.my.id//api/projects', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
