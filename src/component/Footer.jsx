@@ -14,7 +14,7 @@ const Footer = () => {
     
                   <div className="w-full lg:w-1/2 justify-center flex">
                     <img
-                      className="w-100 lg:absolute -top-39"
+                      className="w-100 lg:absolute -top-49"
                       src={rakisMac}
                       alt=""
                     />
@@ -60,7 +60,7 @@ const Footer = () => {
     
                 {/* Copyright & Social */}
                 <div className=" w-full flex flex-col lg:flex-row justify-between items-center border-t-4 border-white/10 dark:border-black/80 pt-6 text-sm text-white/50 dark:text-black/50 gap-4">
-                  <p>© 2025 Aldhi Raqiswandri All Rights Reserved</p>
+                  <p>© 2026 Aldhi Raqiswandri All Rights Reserved</p>
                   <div className="flex space-x-4 md:space-x-6">
                     <a href="/https://www.instagram.com/aldirakis05/" className="hover:text-white">
                       <FaInstagramSquare className="w-8 h-8 md:w-10 md:h-10" />
