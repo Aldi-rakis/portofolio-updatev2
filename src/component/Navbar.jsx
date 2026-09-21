@@ -25,7 +25,7 @@ export default function NavbarDemo() {
       link: "/About",
     },
     {
-      name: "projects",
+      name: "Projects",
       link: "/projects",
     },
   ];

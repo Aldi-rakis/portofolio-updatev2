@@ -15,8 +15,10 @@ import rekamin2 from '../../assets/img/journey/rekamin-2.png'
 const timelineData = [
    {
   title: "Sieben Technologies",
+  period: "2024 — Present",
   description: "I started my career as a full-time remote Software Engineer and IT Consultant at Sieben Technologies. I work on developing and maintaining scalable web and mobile applications for enterprise-level clients, using technologies such as React.js, Angular, Node.js, Laravel, and React Native. My role involves building APIs, implementing business logic, and collaborating with cross-functional teams to deliver reliable and efficient solutions for big companies.",
   images: [],
+  stacks: ["Angular", "React.js", "React Native", "Golang", "AWS", "TypeScript"],
   checklistItems: [
     "Full-time remote Software Engineer & IT Consultant",
     "Developed enterprise web applications using React.js and Angular",
@@ -24,103 +26,59 @@ const timelineData = [
     "Worked on mobile application development using React Native",
     "Handled real-world projects for large-scale company clients"
   ]
-}
-,
+},
     {
         title: "PT Adhivasindo",
+        period: "2023",
         description: "I started my career as a Internship Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
         images: [
-            {
-                src: adhivasindo1,
-                alt: "startup template"
-            },
-            {
-                src: adhivasindo2,
-                alt: "startup template"
-            }
+            { src: adhivasindo1, alt: "startup template" },
+            { src: adhivasindo2, alt: "startup template" }
         ],
+        stacks: ["React.js", "Node.js", "MySQL", "Laravel", "PHP"],
         checklistItems: []
     },
     {
         title: "Program at Investree X Rakamin Academy (Virtual Internship)",
+        period: "2022",
         description: [
             "I participated in a virtual internship program at Investree X Rakamin Academy, where I learned about full-stack development and worked on real-world projects.",
-
         ],
         images: [
             { src: rekamin1, alt: "hero template" },
             { src: rekamin2, alt: "hero template" },
-            // { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
-            // { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
-            // { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
         ],
+        stacks: ["PHP", "Laravel", "MySQL", "JavaScript"],
         checklistItems: ['PHP, Laravel, Mysql']
     },
-    // {
-    //     title: "POMN MIjelin APP",
-    //     description: "Deployed 5 new components on Aceternity today",
-    //     images: [
-
-    //         { src: "https://assets.aceternity.com/pro/bento-grids.png", alt: "bento template" },
-    //         { src: "https://assets.aceternity.com/cards.png", alt: "cards template" }
-    //     ],
-    //     checklistItems: [
-    //         'Build with React Js, Node Js',
-    //         'make an API',
-    //         'Fullstack'
-    //     ]
-    // },
-    // {
-    //     title: "POMN aa APP",
-    //     description: "Deployed 5 new components on Aceternity today",
-    //     images: [
-    //         { src: "https://assets.aceternity.com/pro/hero-sections.png", alt: "hero template" },
-    //         { src: "https://assets.aceternity.com/features-section.png", alt: "feature template" },
-
-    //     ],
-    //     checklistItems: [
-    //         'Build with React Js, Node Js',
-    //         'make an API',
-    //         'Fullstack'
-    //     ]
-    // }
 ];
 
 const data = timelineData.map(item => ({
     title: item.title,
+    period: item.period,
+    stacks: item.stacks || [],
     content: (
-        <div className='border-t-2 border-amber-50 py-4'>
+        <div className='border-t border-white/10 dark:border-black/10 py-4'>
             {/* Handle description(s) */}
             {Array.isArray(item.description) ? (
                 item.description.map((desc, idx) => (
-                    <p key={idx} className="mb-8 text-xs font-normal text-white dark:text-black">
+                    <p key={idx} className="mb-6 font-dosis text-sm md:text-base leading-relaxed text-white dark:text-black">
                         {desc}
                     </p>
                 ))
             ) : (
-                <p className="mb-8 text-xs font-normal dark:text-neutral-800 md:text-sm text-neutral-200">
+                <p className="mb-6 font-dosis text-sm md:text-base leading-relaxed text-white dark:text-black">
                     {item.description}
                 </p>
             )}
 
             {item.checklistItems.length > 0 && (
-                <div className="mb-8">
+                <div className="mb-6 space-y-2">
                     {item.checklistItems.map((checkItem, idx) => (
-                        <div key={idx} className="flex items-center mt-2 gap-3 text-xs dark:text-neutral-700 md:text-sm text-neutral-300">
-                            <div className="flex-shrink-0 w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
-                                <svg
-                                    className="w-3 h-3 text-white"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2.5"
-                                        d="M5 13l4 4L19 7"
-                                    ></path>
+                        <div key={idx} className="flex items-start gap-3 text-sm md:text-sm text-white dark:text-black font-dosis">
+                            <div className="flex-shrink-0 mt-0.5 w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
+                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
                             {checkItem}
@@ -130,18 +88,20 @@ const data = timelineData.map(item => ({
             )}
 
             {/* Handle image grid */}
-            <div className="grid grid-cols-2 gap-4">
-                {item.images.map((img, idx) => (
-                    <img
-                        key={idx}
-                        src={img.src}
-                        alt={img.alt}
-                        width={500}
-                        height={500}
-                        className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    />
-                ))}
-            </div>
+            {item.images.length > 0 && (
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                    {item.images.map((img, idx) => (
+                        <img
+                            key={idx}
+                            src={img.src}
+                            alt={img.alt}
+                            width={500}
+                            height={500}
+                            className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60 transition-transform duration-300 hover:scale-105 cursor-pointer"
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }));
@@ -276,7 +236,7 @@ const about = () => {
 
                                 <a
                                     href="/projects"
-                                    className='bg-orange-400 dark:bg-orange-500 text-white dark:text-[#0b0b0d] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-orange-500 dark:hover:bg-orange-600 transition-all duration-300 text-sm md:text-base'
+                                    className='dark:bg-orange-400 bg-orange-500 text-white dark:text-[#0b0b0d] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-orange-500 dark:hover:bg-orange-600 transition-all duration-300 text-sm md:text-base'
                                 >
                                     View Projects
                                 </a>
@@ -373,6 +333,7 @@ const about = () => {
 
             <section id='my-service' className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-0 px-1 mdpx-6">
                 <div className="max-w-7xl mx-auto">
+                    
                     <div className="relative">
                         {servicesData.map((service, idx) => (
                             <div
@@ -393,7 +354,7 @@ const about = () => {
                                         </div>
 
                                         {/* Konten */}
-                                        <div className="flex-1 font-clash">
+                                        <div className="flex-1 md:px-4 font-clash">
                                             <h3 className="font-clash text-4xl md:text-6xl lg:text-7xl font-bold text-white dark:text-[#0b0b0d] mb-8">
                                                 {service.title}
                                             </h3>

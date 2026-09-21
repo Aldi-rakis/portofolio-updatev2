@@ -29,9 +29,7 @@ const Footer = () => {
                         <li>
                           <a href="#">LinkedIn</a>
                         </li>
-                        <li>
-                          <a href="#">Behance</a>
-                        </li>
+                        
                         <li>
                           <a href="#">Dribbble</a>
                         </li>
@@ -53,7 +51,7 @@ const Footer = () => {
                         </li>
                        
                         <li>
-                          <a href="/Porjects">projects</a>
+                          <a href="/Porjects">Projects</a>
                         </li>
                       </ul>
                     </div>

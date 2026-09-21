@@ -17,6 +17,12 @@ import bgShape from "../../assets/bg/shape-line-bg.png";
 import wave from "../../assets/bg/wave2.svg";
 import project1 from "../../assets/img/project/project-1.png";
 import project2 from "../../assets/img/project/project-2.png";
+import adhivasindo1 from "../../assets/img/journey/adhivasindo-1.png";
+import sieben1 from "../../assets/img/journey/sieben-1.webp";
+import sieben2 from "../../assets/img/journey/sieben-2.png";
+import sieben3 from "../../assets/img/journey/sieben-3.webp";
+
+
 
 import tasicon from "../../assets/icon/tas.png";
 import { InfiniteRibbon } from "../../component/ui/infinite-ribbon.jsx";
@@ -31,7 +37,7 @@ import projectData from "../../data/project.jsx";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from '../../redux/projectslice.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import StackIcons from '../../assets/stack/Index.jsx';
 
@@ -40,6 +46,14 @@ import BEC from "../../assets/service/development.jpg"
 import UIUX from "../../assets/service/ui-ux.webp";
 import arsitektur from "../../assets/service/arsitektur.jpg";
 import { BiLinkExternal } from "react-icons/bi";
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
+  SiNodedotjs, SiExpress, SiPostgresql, SiMysql,
+  SiMongodb, SiLaravel, SiGithub, SiDocker,
+  SiRedux, SiFigma, SiPhp, SiJavascript,
+  SiAngular, SiGo, SiAmazonwebservices,
+} from "react-icons/si";
+import { FaServer } from "react-icons/fa";
 import { a } from "framer-motion/client";
 const Index = () => {
   const projectss = [
@@ -82,13 +96,44 @@ const Index = () => {
     },
   ];
 
+  const stackItems = [
+    { label: "React.js",    icon: <SiReact />,      color: "#61DAFB" },
+    { label: "Next.js",     icon: <SiNextdotjs />,   color: "#ffffff" },
+    { label: "Angular JS",  icon: <SiAngular />,       color: "#764ABC" },
+    { label: "Node.js",     icon: <SiNodedotjs />,   color: "#339933" },
+    { label: "Laravel",     icon: <SiLaravel />,     color: "#FF2D20" },
+    { label: "Express.js",  icon: <SiExpress />,     color: "#ffffff" },
+    { label: "TypeScript",  icon: <SiTypescript />,  color: "#3178C6" },
+    { label: "JavaScript",  icon: <SiJavascript />,  color: "#F7DF1E" },
+    { label: "PHP",         icon: <SiPhp />,         color: "#777BB4" },
+    { label: "Tailwind CSS",icon: <SiTailwindcss />, color: "#06B6D4" },
+    { label: "PostgreSQL",  icon: <SiPostgresql />,  color: "#336791" },
+    { label: "MySQL",       icon: <SiMysql />,       color: "#4479A1" },
+    { label: "MongoDB",     icon: <SiMongodb />,     color: "#47A248" },
+    { label: "REST API",    icon: <FaServer />,      color: "#FF6B35" },
+    { label: "Git & GitHub",icon: <SiGithub />,      color: "#ffffff" },
+    { label: "AWS",         icon: <SiAmazonwebservices />,         color: "#F24E1E" },
+    { label: "Docker",      icon: <SiDocker />,      color: "#2496ED" },
+    { label: "Redux",       icon: <SiRedux />,       color: "#764ABC" },
+    { label: "Figma",       icon: <SiFigma />,       color: "#F24E1E" },
+  ];
+
   const navigate = useNavigate();
 
   const handleDetailsClick = (projectID) => {
-    // Handle the click event for project details
     navigate(`/projects/${projectID}`);
   };
 
+  // Sieben carousel
+  const siebenImages = [sieben1, sieben2, sieben3];
+  const [siebenSlide, setSiebenSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSiebenSlide(prev => (prev + 1) % siebenImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [siebenImages.length]);
 
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -382,8 +427,9 @@ const Index = () => {
           </div>
 
           <div className="w-full md:w-2/3">
-            <motion.p
-              className="font-dosis text-white dark:text-black text-xl lg:text-3xl md:leading-12 text-center md:text-justify"
+          <div>
+              <motion.p
+              className="font-dosis text-white dark:text-black text-xl lg:text-xl xl:text-2xl md:leading-12 text-center md:text-justify"
               variants={{
                 hidden: { opacity: 0 },
                 visible: {
@@ -396,7 +442,7 @@ const Index = () => {
               initial="hidden"
               whileInView="visible"
             >
-              {"I'm a Fullstack-Developer with over 2 years of experience in software development. I specialize in system architecture, API development, and problem-solving. I also handle project planning, implementation, and deployment, with a focus on building efficient, user-centric digital solutions, supported by modern and responsive front-end design."
+              {"I'm a Fullstack-Developer with over 2 years of experience in Software Development handle both front-end and back-end development. I specialize in system architecture, API development, and problem-solving. I also handle project planning, implementation, and deployment, with a focus on building efficient, user-centric digital solutions, supported by modern and responsive front-end design."
                 .split(" ")
                 .map((word, i) => {
                   const isTarget =
@@ -425,14 +471,48 @@ const Index = () => {
                 })}
             </motion.p>
           </div>
+
+          {/* Tech Stack Cards */}
+          <motion.div
+            className="mt-2 flex flex-wrap gap-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.07 },
+              },
+            }}
+          >
+            {stackItems.map((tech, i) => (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 12 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                whileHover={{ scale: 1.08, y: -2 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 dark:bg-black/10 dark:border-black/20 backdrop-blur-sm text-white dark:text-black font-dosis font-semibold hover:border-orange-500/60 hover:bg-orange-500/10 dark:hover:border-orange-500/60 transition-all duration-300 cursor-default select-none"
+              >
+                <span className="text-lg" style={{ color: tech.color }}>{tech.icon}</span>
+                <span className="uppercase text-xs tracking-widest">{tech.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          </div>
+
         </div>
 
         <div className="bg-[#0b0b0d] dark:bg-[#f6f4e5] text-white py-16">
           <div className="max-w-6xl mx-auto px-4 flex flex-row md:flex-row justify-around items-center gap-10 md:gap-0">
             {[
               { value: "2+", text: "Years Experience" },
-              { value: "10+", text: "Overall Customers" },
-              { value: "15+", text: "Projects Implemented" },
+              { value: "15+", text: "Overall Clients" },
+              { value: "20+", text: "Projects Implemented" },
             ].map((item, index) => {
               // Tentukan arah animasi berdasarkan index
               const direction =
@@ -474,8 +554,194 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ───── Currently Working ───── */}
+      <section className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-20 px-4 lg:px-20">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.2 }}
+          className="text-center mb-14"
+        >
+          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 dark:text-gray-600 mb-3 font-dosis">
+            Currently Working
+          </p>
+          <h2 className="font-clash text-4xl md:text-5xl font-bold text-white dark:text-black">
+            Current{" "}
+            <span className="italic font-light bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
+              work
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Card Row */}
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-14 items-stretch">
+
+          {/* LEFT — Gradient Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="relative lg:w-1/2 rounded-2xl overflow-hidden min-h-[420px] bg-gradient-to-br from-[#1a0a2e] via-[#6e6eb1] to-[#db6f44] dark:bg-gradient-to-br dark:from-[#f1f0f1] dark:via-red-200 dark:to-yellow-200 px-8 py-6 flex flex-col justify-between group"
+          >
+            {/* Glow overlay bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none z-10" />
+
+            {/* Live badge */}
+            <div className="relative z-20 flex items-center gap-2">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+              </span>
+              <span className="text-xs text-white/80 dark:text-black/80 font-dosis uppercase tracking-widest"> 2025 — Present</span>
+            </div>
+             <div className="relative z-20 mt-1">
+              <h3 className="font-clash text-2xl md:text-xl font-bold text-white dark:text-black leading-snug">
+                Fullstack Developer —{" "}
+                <span className="text-orange-400 dark:text-amber-600">Sieben Technology</span>
+              </h3>
+              
+            </div>
+
+            {/* Floating screenshot image — auto slide */}
+            <motion.div
+              className="relative z-10 mt-6 rounded-xl overflow-hidden shadow-2xl"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ y: -8, scale: 1.03, transition: { duration: 0.4, ease: "easeOut" } }}
+            >
+              {/* Browser bar mock */}
+              <div className="flex items-center gap-1.5 bg-[#1e1e2e] px-3 py-2 rounded-t-xl">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                <div className="ml-3 flex-1 bg-white/10 rounded-full h-4 text-[9px] text-white/40 font-mono flex items-center px-2">
+                  ayosrc.sampoerna.com
+                </div>
+              </div>
+
+              {/* Carousel */}
+              <div className="relative overflow-hidden w-full max-h-[440px]">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={siebenSlide}
+                    src={siebenImages[siebenSlide]}
+                    alt={`AYO SRC - HMS Sampoerna ${siebenSlide + 1}`}
+                    className="w-full object-cover object-top max-h-[440px]"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  />
+                </AnimatePresence>
+
+                {/* Dot indicators */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  {siebenImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setSiebenSlide(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                        i === siebenSlide ? "bg-white w-4" : "bg-white/40"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Main heading text */}
+           
+
+            {/* Arrow */}
+            <Link to="/about" className="relative z-20 self-end mt-3 w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-white/20 hover:bg-white/20 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </motion.div>
+
+          {/* RIGHT — Details */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="lg:w-1/2 flex flex-col justify-between gap-6"
+          >
+            {/* Title */}
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-0.5 bg-orange-500" />
+              <h3 className="font-clash text-xl md:text-2xl font-bold text-white dark:text-black">
+                Sieben Technology · IT consulting
+              </h3>
+            </div>
+
+            {/* Description */}
+            <p className="font-dosis text-gray-300 dark:text-gray-700 text-sm md:text-base leading-relaxed">
+              Developed and maintained fullstack applications for PT HM Sampoerna under the{" "}
+              <span className="text-orange-400 font-semibold">AYO SRC</span> ecosystem, supporting principals,
+              wholesalers, retailers, and sales operations across multiple digital platforms.
+            </p>
+
+            {/* Bullet points */}
+            <ul className="space-y-3">
+              {[
+                "Developed and enhanced 4 apps within AYO SRC ecosystem: AYO Principal, AYO Mitra/WS, AYO Retailer, and AYO Mitra Order.",
+                "Worked across frontend and backend using Angular, React.js, React Native, Golang, and AWS to deliver new features.",
+                "Handled feature development, bug fixing, troubleshooting, and system improvements based on business & user needs.",
+              ].map((point, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  className="flex items-start gap-3 text-sm text-gray-300 dark:text-gray-700 font-dosis"
+                >
+                  <span className="mt-1 text-orange-400 text-base leading-none flex-shrink-0">✦</span>
+                  <span>{point}</span>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* Tech stack pills */}
+            <motion.div
+              className="flex flex-wrap gap-2 pt-2"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+              }}
+            >
+              {[
+                { label: "Angular",      icon: <SiAngular />,    color: "#DD0031" },
+                { label: "React.js",     icon: <SiReact />,      color: "#61DAFB" },
+                { label: "React Native", icon: <SiReact />,      color: "#61DAFB" },
+                { label: "Golang",       icon: <SiGo />,         color: "#00ACD7" },
+                { label: "AWS",          icon: <SiAmazonwebservices />,  color: "#FF9900" },
+                { label: "TypeScript",   icon: <SiTypescript />, color: "#3178C6" },
+              ].map((tech, i) => (
+                <motion.div
+                  key={i}
+                  variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 dark:bg-black/10 dark:border-black/20 text-white dark:text-black text-xs font-dosis font-semibold uppercase tracking-wider hover:border-orange-500/60 hover:bg-orange-500/10 transition-all duration-200"
+                >
+                  <span style={{ color: tech.color }}>{tech.icon}</span>
+                  <span>{tech.label}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       <section id="project" className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-6">
-        <div className="z-10 relative justify-center items-center gap-10 px-4 lg:px-45 py- ">
+        <div className="z-10 relative justify-center items-center gap-10 px-4 lg:px-65 py- ">
           <h2 className="text-start font-clash text-3xl font-bold text-white dark:text-black">My Projects</h2>
           <p className="text-start font-dosis text-xl font-thin text-white dark:text-black">- Showcase project -</p>
         </div>
@@ -483,7 +749,7 @@ const Index = () => {
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#FF589C] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1/4"></div>
         <div className="absolute z-0 rounded-full blur-[100px] bg-[#0041BE] h-[200px] w-[200px] opacity-15 left-0 transform translate-y-1"></div>
 
-        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 py-10 text-center">
+        <div className="z-10 relative justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 px-4 lg:px-45 xl:px-65 py-10 text-center">
           {status === 'loading' ? (
             // Loading skeleton untuk projects
             Array.from({ length: 4 }).map((_, index) => (
@@ -534,7 +800,7 @@ const Index = () => {
                 transition={{ delay: index * 0.3 }}
                 className="cursor-pointer rounded-2xl"
               >
-                <div className="w-full px-20 bg-gradient-to-b from-black to-gray-800 dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
+                <div className="w-full px-20 bg-gradient-to-b from-[#1a0a2e] to-[#c46a4734] dark:bg-gradient-to-b dark:from-yellow-200 dark:to-red-200 rounded-2xl shadow-md"
                   onClick={() => handleDetailsClick(project.projectID)}
                 >
                   <TiltedCard
@@ -577,12 +843,12 @@ const Index = () => {
 
       <section id="contact" className="bg-[#0b0b0d] dark:bg-[#f6f4e5] py-2">
         <div className="relative z-0">
-          <h1 className="font-clash px-4 lg:px-45 py-2 text-3xl font-semibold text-start text-white dark:text-black">
+          <h1 className="font-clash px-4 lg:px-65 py-2 text-3xl font-semibold text-start text-white dark:text-black">
             What I Do
           </h1>
 
         </div>
-        <div className=" relative text-white dark:text-black z-10 p-8 px-4 lg:px-45 flex flex-col md:flex-row gap-8 transition-all duration-500">
+        <div className=" relative text-white dark:text-black z-10 p-8 px-4 lg:px-45 xl:px-65 flex flex-col md:flex-row gap-8 transition-all duration-500">
           {/* LEFT SIDE */}
           <div className="flex flex-col gap-4 w-full md:w-1/2">
             {tabs.map((tab, index) => (
