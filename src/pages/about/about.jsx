@@ -15,22 +15,21 @@ import rekamin2 from '../../assets/img/journey/rekamin-2.png'
 const timelineData = [
    {
   title: "Sieben Technologies",
-  period: "2024 — Present",
-  description: "I started my career as a full-time remote Software Engineer and IT Consultant at Sieben Technologies. I work on developing and maintaining scalable web and mobile applications for enterprise-level clients, using technologies such as React.js, Angular, Node.js, Laravel, and React Native. My role involves building APIs, implementing business logic, and collaborating with cross-functional teams to deliver reliable and efficient solutions for big companies.",
+  period: "2025 — Present",
+  description: "I work as a full-time remote Software Engineer and IT Consultant at Sieben Technology, working with PT HM Sampoerna on the AYO SRC ecosystem. I develop and maintain scalable web and mobile applications across AYO Principal, AYO Mitra/WS, AYO Retailer, and AYO Mitra Order, using technologies such as Angular, React.js, React Native, Golang, Laravel, Node.js, and AWS. My responsibilities include implementing business logic, developing new features, troubleshooting issues, and collaborating with cross-functional teams to deliver reliable solutions that support enterprise-level business operations.",
   images: [],
   stacks: ["Angular", "React.js", "React Native", "Golang", "AWS", "TypeScript"],
   checklistItems: [
     "Full-time remote Software Engineer & IT Consultant",
-    "Developed enterprise web applications using React.js and Angular",
-    "Built RESTful APIs and backend services with Node.js and Laravel",
-    "Worked on mobile application development using React Native",
-    "Handled real-world projects for large-scale company clients"
+    "Developed and enhanced 4 applications within the AYO SRC ecosystem: AYO Principal, AYO Mitra/WS, AYO Retailer, and AYO Mitra Order.",
+    "Worked across the frontend and backend using Angular, React.js, React Native, Golang, and AWS to deliver new features, improvements, and system enhancements.",
+    "Handled feature development, bug fixing, troubleshooting, and system improvements based on business requirements and user needs",
   ]
 },
     {
         title: "PT Adhivasindo",
-        period: "2023",
-        description: "I started my career as a Internship Fullstack Developer at PT Adhivasindo, where I worked on various projects, including web applications and APIs.",
+        period: "2024 — 2025",
+        description: "Worked as a Fullstack Developer Intern at PT Adhivasindo, contributing to various web applications and backend systems for digital business solutions. I was involved in the full development lifecycle, from designing system architecture and developing frontend and backend features to API integration, deployment, and maintenance. I contributed to the development of AWH.co.id, a digital invitation and guest book platform, where I developed digital invitation templates and guest book features, along with projects such as ticketing systems and automated gate systems. I also developed RESTful APIs, database integrations, QR-based attendance features, and dynamic content management while collaborating with internal teams and clients to deliver reliable and user-focused solutions.",
         images: [
             { src: adhivasindo1, alt: "startup template" },
             { src: adhivasindo2, alt: "startup template" }
